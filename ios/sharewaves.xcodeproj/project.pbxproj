@@ -19,7 +19,7 @@
 		2DCD954D1E0B4F2C00145EB5 /* sharewavesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* sharewavesTests.m */; };
 		78E0ED4B6BD5976A4C21194D /* libPods-sharewavesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F236E8BEDAA78CB20209CB0F /* libPods-sharewavesTests.a */; };
 		B86C70FB457C2DCA5BA3620B /* libPods-sharewaves-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 985CE52ACED4FCF9E36E23A9 /* libPods-sharewaves-tvOSTests.a */; };
-		F316E5545E8A8BEDAB80B89D /* libPods-sharewaves.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0355A15886124D37B9CDB6 /* libPods-sharewaves.a */; };
+		F316E5545E8A8BEDAB80B89D /* libPods-sharewaves.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0355A15886124D37B9CDB6 /* libPods-sharewaves.a */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,7 +161,6 @@
 				21CE9A966C88D145CB86294F /* Pods-sharewavesTests.debug.xcconfig */,
 				E0514ADF86FED2A7DA600B55 /* Pods-sharewavesTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -290,7 +289,11 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 8BSY35859S;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = 8BSY35859S;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -583,6 +586,7 @@
 			baseConfigurationReference = 21CE9A966C88D145CB86294F /* Pods-sharewavesTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 8BSY35859S;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -607,6 +611,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 8BSY35859S;
 				INFOPLIST_FILE = sharewavesTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -628,6 +633,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = 8BSY35859S;
 				INFOPLIST_FILE = sharewaves/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -647,6 +653,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8BSY35859S;
 				INFOPLIST_FILE = sharewaves/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (

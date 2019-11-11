@@ -2,9 +2,9 @@
 
 > CS 147 Aut 2019 | Team Members: @garrickf (Garrick), @graceannewang (Grace), @singerg22 (Gen)
 
-This repo contains the React Native UI for `sharewaves`, an application designed for CS 147: Human Computer Interaction. The problem space was "digital democracy", and we created a solution to provide a pathway from news reading to immediate, crowdsourced action on popular issues. More information can be found here: 
+This repo contains the React Native UI for **sharewaves**, an application designed for CS 147: Human Computer Interaction. The problem space was "digital democracy", and we created a solution to provide a pathway from news reading to immediate, crowdsourced action on popular issues. More information (including the design process) can be found [here](https://web.stanford.edu/class/cs147/projects/DigitalDemocracy/sharewave/)!
 
-## Getting Started Developing
+## 🌊 Getting Started Developing
 
 Useful reference links:
 
@@ -36,7 +36,7 @@ Next, in the directory you want your project to appear, clone the repository by 
 git clone https://github.com/garrickf/cs147-app.git
 ```
 
-This will take the contents of this repo and put into a local folder you can `cd` into. Once inside your project directory, you can run:
+This will take the contents of this repo and put into a local folder you can `cd` into. Once inside your project directory, install all dependencies with `npm install`. Then, you can run:
 
 ```
 npx react-native run-ios
@@ -44,11 +44,11 @@ npx react-native run-ios
 
 to run the app in an iOS simulator. If you followed everything above, this step should work. Running the app in an emulator can be pretty laggy, so consider following [link 4 above](https://facebook.github.io/react-native/docs/running-on-device) to run the app on your own device!
 
-> Note 1: link 4 (i.e. Deploy to iPhone via Xcode) didn't work for Garrick (weird linker errors), but [this StackOverflow post](https://stackoverflow.com/questions/38495793/run-react-native-application-on-ios-device-directly-from-command-line) seemed to have better results: run `npm install ios-deploy`, then `npx react-native ios-deploy --device <YOUR DEVICE>`.
+> Note 1: link 4 (i.e. Deploy to iPhone via Xcode) didn't work for Garrick (weird linker errors), but [this StackOverflow post](https://stackoverflow.com/questions/38495793/run-react-native-application-on-ios-device-directly-from-command-line) seemed to have better results: run `npm install ios-deploy`, then `npx react-native ios-deploy --device <YOUR_DEVICE>`.
 
 > Note 2: When installing on your device, you may need to go to `Settings > General > Profiles and Device Management` to trust and open developer apps.
 
-> Note 3: Garrick found something re: link 4 (i.e. Deploy to iPhone via Xcode). Instead of opening `sharewaves.xcodeproj`, open `sharewaves.xcworkspace` (I suppose we are using CocoaPods). Then you can follow the steps as usual.
+> Note 3: Garrick found something re: link 4 (i.e. Deploy to iPhone via Xcode). Instead of opening `sharewaves.xcodeproj`, open `sharewaves.xcworkspace` (I suppose we are using CocoaPods). Then you can follow the steps as usual. You may need to run `pod install` in install iOS dependencies (pods) in the `ios` folder.
 
 ### Setting Up VS Code (Optional, but Recommended)
 
@@ -57,8 +57,34 @@ VS Code is a good development environment that can be extended with functionalit
 - You can view your current branch, inspect diffs for changed files, and stage and commit all within the IDE!
 - You can search for files quickly with the shortcut `Cmd + P`, or execute commands (this is called the Command Palette) with `Cmd + Shift + P`.
 
-## Developing Guide
+## 💫 Developing Guide
 
 When making changes to the repo, careful not to develop directly off of the branch `master`! This branch contains working code that other team members may be basing changes off of.
 
 The best thing to do is to **create a local branch**, develop and save changes there and **create a pull request** against `master` when you have a big thing ready to merge in.
+
+### Branching and Pull Requests
+
+To make a new branch off of `master`, run:
+
+```
+git checkout -b <YOUR_BRANCH_NAME>
+```
+
+To push your new changes, run:
+
+```
+git push --set-upstream origin <YOUR_BRANCH_NAME>
+```
+
+### React Native Tutorials
+
+Since the starter code was removed/cannibalized, you still may want to check out the tutorials linked!
+
+- [Basics](https://facebook.github.io/react-native/docs/tutorial)
+- [Style](https://facebook.github.io/react-native/docs/style)
+- [Layout, i.e. Flexbox](https://facebook.github.io/react-native/docs/flexbox)
+- [Components](https://facebook.github.io/react-native/docs/components-and-apis)
+- [Navigation](https://facebook.github.io/react-native/docs/navigation)
+- [Networking](https://facebook.github.io/react-native/docs/network)
+- [Help](https://facebook.github.io/react-native/help)

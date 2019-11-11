@@ -24,8 +24,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import Card from './components/card';
-import CircleButton from './components/circle-button';
+import Card from './components/core/card';
+import AddButton from './components/add-button';
 
 const App: () => React$Node = () => {
   // return (
@@ -82,15 +82,15 @@ const App: () => React$Node = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      {/* <SafeAreaView> */}
+      <SafeAreaView>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
           <Card header={'🌊 Ride The Wave!'} body={'Now that there’s a wave in your area, people are rushing to take action on an issue you care about. We offer options for all skill and energy levels—just swipe to contribute the way you know best!'} />
           <Card header={'🌊 Ride The Wave!'} body={'Now that there’s a wave in your area, people are rushing to take action on an issue you care about. We offer options for all skill and energy levels—just swipe to contribute the way you know best!'} />
-          <CircleButton />
+          <AddButton />
         </ScrollView>
-      {/* </SafeAreaView> */}
+      </SafeAreaView>
     </>
   );
 };

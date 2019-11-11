@@ -71,6 +71,12 @@ To make a new branch off of `master`, run:
 git checkout -b <YOUR_BRANCH_NAME>
 ```
 
+To push your new changes, run:
+
+```
+git push --set-upstream origin <YOUR_BRANCH_NAME>
+```
+
 ### React Native Tutorials
 
 Since the starter code was removed/cannibalized, you still may want to check out the tutorials linked!

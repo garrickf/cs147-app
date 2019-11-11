@@ -1,10 +1,6 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-} from 'react-native';
-import {typography} from '../styles';
+import {View, Text, StyleSheet} from 'react-native';
+import {typography} from '../../styles';
 
 // Basic card component
 

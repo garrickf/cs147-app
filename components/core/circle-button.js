@@ -1,16 +1,16 @@
 import React from 'react';
 import {TouchableOpacity, View, Image, StyleSheet} from 'react-native';
-import {aquaHex, coralHex} from '../../styles';
+import {aquaHex} from '../../styles';
 import {animated} from 'react-spring';
 const AnimatedView = animated(View);
 
-export default ({image, style}) => {
+export default ({image, style, onPress}) => {
   // Component
   return (
-    <TouchableOpacity activeOpacity={0.5}>
+    <TouchableOpacity activeOpacity={0.5} onPress={onPress}>
       <AnimatedView
         style={{
-          ...styles.circleButton,
+          ...styles.circleButtonDefault,
           ...style,
         }}>
         <Image style={styles.icon} source={image} />
@@ -20,7 +20,7 @@ export default ({image, style}) => {
 };
 
 const styles = StyleSheet.create({
-  circleButton: {
+  circleButtonDefault: {
     position: 'relative',
     backgroundColor: aquaHex,
     width: 70,

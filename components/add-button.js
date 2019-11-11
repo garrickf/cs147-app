@@ -6,7 +6,7 @@ import CircleButton from './core/circle-button';
 
 const AnimatedView = animated(View);
 
-export default () => {
+export default ({setToastMessage}) => {
   // Animation primitives
   const [toggled, setToggle] = useState(false);
   // If toggled, button rotates by 45 degrees
@@ -38,9 +38,15 @@ export default () => {
     setToggle(!toggled);
   };
 
+  const handleSecondaryPress = modality => {
+    setToastMessage(`Shared ${modality} story.`);
+    setToggle(false);
+  };
+
   const buttonBar = (
     <>
       <CircleButton
+        onPress={() => handleSecondaryPress('media')}
         style={{
           ...styles.mediaButton,
           transform: [
@@ -52,6 +58,7 @@ export default () => {
         image={require('../assets/images/camera.png')}
       />
       <CircleButton
+        onPress={() => handleSecondaryPress('news')}
         style={{
           ...styles.newsButton,
           transform: [

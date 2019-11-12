@@ -30,6 +30,7 @@ import Card from './components/core/card';
 import AddButton from './components/add-button';
 import ActionBar from './components/core/action-bar';
 import Toast from './components/core/toast';
+import Beacon from './components/beacon';
 
 const App: () => React$Node = () => {
   // return (
@@ -133,6 +134,7 @@ const App: () => React$Node = () => {
                   <Button title={'OK 2'} />
                 </ActionBar>
               </Card>
+              <Beacon/>
             </View>
 
             <AddButton setToastMessage={setToastMessage} />

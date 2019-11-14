@@ -41,15 +41,10 @@ const styles = StyleSheet.create({
   bottom: {
     width: 0,
     height: 0,
-    borderLeftWidth: 40,
     borderLeftColor: 'transparent',
-    borderRightWidth: 40,
     borderRightColor: 'transparent',
-    borderTopWidth: 80,
     borderTopColor: aquaHex,
-    marginLeft: 11,
     position: 'absolute',
-    marginTop: 80,
   },
   /*beacon: {
     width: 0,

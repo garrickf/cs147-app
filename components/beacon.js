@@ -1,15 +1,10 @@
-import React, {useState} from 'react';
-import {
-  TouchableOpacity,
-  TouchableHighlight,
-  View,
-  Modal,
-  StyleSheet,
-  Text,
-  Alert,
-} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {TouchableOpacity, View, StyleSheet} from 'react-native';
 import {useSpring, animated, useTrail} from 'react-spring';
 import {aquaHex, orchidHex, whiteHex, effects} from '../styles';
+import {useSelector, useDispatch} from 'react-redux';
+import {toggleModal, updateModal} from '../redux/actions';
+import {getModalActive} from '../redux/selectors';
 
 const AnimatedView = animated(View);
 const AnimatedTouchableOpacity = animated(TouchableOpacity);
@@ -52,8 +47,16 @@ const Particle = ({style, scale, toggled}) => {
   );
 };
 
-const Beacon = ({type, location, attention}) => {
+const Beacon = ({type, location, attention, content}) => {
   const [toggled, setToggle] = useState(false);
+  const modalActive = useSelector(getModalActive);
+
+  // If the story modal was closed, any beacon in focus should come out of focus.
+  useEffect(() => {
+    if (!modalActive) {
+      setToggle(false);
+    }
+  }, [modalActive]);
 
   const props = useSpring({
     scale: toggled ? 0.6 : 0.3,
@@ -61,6 +64,7 @@ const Beacon = ({type, location, attention}) => {
     config: {tension: 200},
   });
 
+  // Create a particle effect arround the beacon.
   const particles = [...Array(attention).keys()];
 
   const trail = useTrail(particles.length, {
@@ -71,9 +75,22 @@ const Beacon = ({type, location, attention}) => {
     delay: toggled ? 500 : 0,
   });
 
+  // When a beacon is pressed, it sends its information to be displayed in a modal.
+  const dispatch = useDispatch();
+  const handlePress = () => {
+    setToggle(!toggled);
+    dispatch(
+      updateModal({
+        header: content.header,
+        body: content.body,
+      }),
+    );
+    dispatch(toggleModal());
+  };
+
   return (
     <AnimatedTouchableOpacity
-      onPress={() => setToggle(!toggled)}
+      onPress={handlePress}
       activeOpacity={0.5}
       style={{
         // backgroundColor: 'blue', // DEBUG
@@ -143,6 +160,10 @@ Beacon.defaultProps = {
     y: 500,
   },
   attention: 5,
+  content: {
+    header: 'Header',
+    body: 'Body',
+  },
 };
 
 export default Beacon;

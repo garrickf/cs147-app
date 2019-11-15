@@ -39,7 +39,7 @@ const Button = ({onPress, title, color, type}) => {
   }
 
   return (
-    <TouchableOpacity activeOpacity={0.5}>
+    <TouchableOpacity activeOpacity={0.5} onPress={onPress}>
       <View
         style={{
           ...styles.button,

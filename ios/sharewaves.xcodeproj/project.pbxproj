@@ -5,26 +5,27 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* sharewavesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* sharewavesTests.m */; };
+		061CA947E12E4FDC90C86E25 /* DMSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 956C75F4546743D39CAF207D /* DMSans-Medium.ttf */; };
+		0BA9E3B505FB4330A31D08CC /* DMSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B1748D3D6B949408944BF7A /* DMSans-Bold.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		1844C83250CC4AA888E441D0 /* DMSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E13663C96AC4EF5ABC4EDD7 /* DMSans-BoldItalic.ttf */; };
 		1ADE82906587B6219CA04BDB /* libPods-sharewaves-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E207044DDC572310D13D62D1 /* libPods-sharewaves-tvOS.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* sharewavesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* sharewavesTests.m */; };
-		78E0ED4B6BD5976A4C21194D /* libPods-sharewavesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F236E8BEDAA78CB20209CB0F /* libPods-sharewavesTests.a */; };
-		B86C70FB457C2DCA5BA3620B /* libPods-sharewaves-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 985CE52ACED4FCF9E36E23A9 /* libPods-sharewaves-tvOSTests.a */; };
-		F316E5545E8A8BEDAB80B89D /* libPods-sharewaves.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0355A15886124D37B9CDB6 /* libPods-sharewaves.a */; settings = {ATTRIBUTES = (Required, ); }; };
-		0BA9E3B505FB4330A31D08CC /* DMSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B1748D3D6B949408944BF7A /* DMSans-Bold.ttf */; };
-		1844C83250CC4AA888E441D0 /* DMSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E13663C96AC4EF5ABC4EDD7 /* DMSans-BoldItalic.ttf */; };
-		AEE618520E844E2F850433F9 /* DMSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68A843F77E87450C98336C37 /* DMSans-Italic.ttf */; };
-		061CA947E12E4FDC90C86E25 /* DMSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 956C75F4546743D39CAF207D /* DMSans-Medium.ttf */; };
 		3BCE0D307D1448D5B50BF320 /* DMSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F676223167D4848B746B954 /* DMSans-MediumItalic.ttf */; };
+		78E0ED4B6BD5976A4C21194D /* libPods-sharewavesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F236E8BEDAA78CB20209CB0F /* libPods-sharewavesTests.a */; };
+		AEE618520E844E2F850433F9 /* DMSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68A843F77E87450C98336C37 /* DMSans-Italic.ttf */; };
+		B86C70FB457C2DCA5BA3620B /* libPods-sharewaves-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 985CE52ACED4FCF9E36E23A9 /* libPods-sharewaves-tvOSTests.a */; };
 		EF673FC8404E48789248948D /* DMSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9D3666CB5CC44A6A100BB36 /* DMSans-Regular.ttf */; };
+		F316E5545E8A8BEDAB80B89D /* libPods-sharewaves.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0355A15886124D37B9CDB6 /* libPods-sharewaves.a */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,21 +64,21 @@
 		2D02E4901E0B4A5D006451C7 /* sharewaves-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "sharewaves-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		447C868BED3CB5853CF083BC /* Pods-sharewaves-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sharewaves-tvOS.release.xcconfig"; path = "Target Support Files/Pods-sharewaves-tvOS/Pods-sharewaves-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		4B0355A15886124D37B9CDB6 /* libPods-sharewaves.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sharewaves.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E13663C96AC4EF5ABC4EDD7 /* DMSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DMSans-BoldItalic.ttf"; path = "../assets/fonts/DMSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		556D77FF14CED44816AB3155 /* Pods-sharewaves-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sharewaves-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-sharewaves-tvOSTests/Pods-sharewaves-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		68A843F77E87450C98336C37 /* DMSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DMSans-Italic.ttf"; path = "../assets/fonts/DMSans-Italic.ttf"; sourceTree = "<group>"; };
 		8826281404DD76C4955B3B62 /* Pods-sharewaves.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sharewaves.debug.xcconfig"; path = "Target Support Files/Pods-sharewaves/Pods-sharewaves.debug.xcconfig"; sourceTree = "<group>"; };
+		8B1748D3D6B949408944BF7A /* DMSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DMSans-Bold.ttf"; path = "../assets/fonts/DMSans-Bold.ttf"; sourceTree = "<group>"; };
+		956C75F4546743D39CAF207D /* DMSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DMSans-Medium.ttf"; path = "../assets/fonts/DMSans-Medium.ttf"; sourceTree = "<group>"; };
 		985CE52ACED4FCF9E36E23A9 /* libPods-sharewaves-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sharewaves-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		996949338720DA4AF9E00CEA /* Pods-sharewaves-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sharewaves-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-sharewaves-tvOS/Pods-sharewaves-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		9F676223167D4848B746B954 /* DMSans-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DMSans-MediumItalic.ttf"; path = "../assets/fonts/DMSans-MediumItalic.ttf"; sourceTree = "<group>"; };
+		A9D3666CB5CC44A6A100BB36 /* DMSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DMSans-Regular.ttf"; path = "../assets/fonts/DMSans-Regular.ttf"; sourceTree = "<group>"; };
 		E0514ADF86FED2A7DA600B55 /* Pods-sharewavesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sharewavesTests.release.xcconfig"; path = "Target Support Files/Pods-sharewavesTests/Pods-sharewavesTests.release.xcconfig"; sourceTree = "<group>"; };
 		E207044DDC572310D13D62D1 /* libPods-sharewaves-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sharewaves-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F236E8BEDAA78CB20209CB0F /* libPods-sharewavesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sharewavesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8B1748D3D6B949408944BF7A /* DMSans-Bold.ttf */ = {isa = PBXFileReference; name = "DMSans-Bold.ttf"; path = "../assets/fonts/DMSans-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		4E13663C96AC4EF5ABC4EDD7 /* DMSans-BoldItalic.ttf */ = {isa = PBXFileReference; name = "DMSans-BoldItalic.ttf"; path = "../assets/fonts/DMSans-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		68A843F77E87450C98336C37 /* DMSans-Italic.ttf */ = {isa = PBXFileReference; name = "DMSans-Italic.ttf"; path = "../assets/fonts/DMSans-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		956C75F4546743D39CAF207D /* DMSans-Medium.ttf */ = {isa = PBXFileReference; name = "DMSans-Medium.ttf"; path = "../assets/fonts/DMSans-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		9F676223167D4848B746B954 /* DMSans-MediumItalic.ttf */ = {isa = PBXFileReference; name = "DMSans-MediumItalic.ttf"; path = "../assets/fonts/DMSans-MediumItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		A9D3666CB5CC44A6A100BB36 /* DMSans-Regular.ttf */ = {isa = PBXFileReference; name = "DMSans-Regular.ttf"; path = "../assets/fonts/DMSans-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,7 +211,7 @@
 			sourceTree = "<group>";
 		};
 		CB0847A9C3BE46399825F548 /* Resources */ = {
-			isa = "PBXGroup";
+			isa = PBXGroup;
 			children = (
 				8B1748D3D6B949408944BF7A /* DMSans-Bold.ttf */,
 				4E13663C96AC4EF5ABC4EDD7 /* DMSans-BoldItalic.ttf */,
@@ -221,7 +222,6 @@
 			);
 			name = Resources;
 			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 

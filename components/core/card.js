@@ -5,8 +5,8 @@ import {effects} from '../../styles';
 
 // Basic card component
 
-export default ({header, children}) => (
-  <View style={styles.card}>
+export default ({header, children, style}) => (
+  <View style={{...styles.card, ...style}}>
     <Header>{header}</Header>
     <View>{children}</View>
   </View>

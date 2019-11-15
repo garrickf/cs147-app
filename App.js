@@ -30,6 +30,11 @@ import Card from './components/core/card';
 import AddButton from './components/add-button';
 import ActionBar from './components/core/action-bar';
 import Toast from './components/core/toast';
+import Beacon from './components/beacon';
+
+import store from './redux/store';
+import {Provider} from 'react-redux';
+import Modal from './components/modal';
 
 const App: () => React$Node = () => {
   // return (
@@ -97,7 +102,7 @@ const App: () => React$Node = () => {
   const toast = <Toast>{toastMessage}</Toast>;
 
   return (
-    <>
+    <Provider store={store}>
       <StatusBar barStyle="dark-content" />
       <ImageBackground
         source={require('./assets/images/map.png')}
@@ -133,17 +138,45 @@ const App: () => React$Node = () => {
                   <Button title={'OK 2'} />
                 </ActionBar>
               </Card>
+              <Beacon content={fakeContent[0]} location={fakeLocations[0]} />
+
+              <Beacon content={fakeContent[1]} location={fakeLocations[1]} />
             </View>
 
             <AddButton setToastMessage={setToastMessage} />
 
             {toast}
+
+            <Modal />
           </ImageBackground>
         </SafeAreaView>
       </ImageBackground>
-    </>
+    </Provider>
   );
 };
+
+const fakeContent = [
+  {
+    header: 'Amazon Rainforest Burning',
+    body:
+      'Dark clouds of smoke smothered cities in Brazil as parts of the Amazon burned at a rate not seen in years, and.... ',
+  },
+  {
+    header: 'Wave Beach',
+    body: null,
+  },
+];
+
+const fakeLocations = [
+  {
+    x: 100,
+    y: 400,
+  },
+  {
+    x: 200,
+    y: 500,
+  },
+]
 
 const styles = StyleSheet.create({
   view: {

@@ -31,9 +31,15 @@ export const effects = StyleSheet.create({
     backgroundColor: whiteHex,
     borderColor: grayHex,
     borderWidth: 0.5,
-    shadowColor: '#000',
+    shadowColor: blackHex,
     shadowOffset: {width: 0, height: 4},
     shadowOpacity: 0.25,
     shadowRadius: 4,
+  },
+  glow: {
+    shadowColor: '#DDC7F5',
+    shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 1,
+    shadowRadius: 14,
   },
 });

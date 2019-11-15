@@ -1,8 +1,15 @@
 import React, {useState} from 'react';
-import {TouchableOpacity, View, Image, StyleSheet, Text} from 'react-native';
+import {
+  TouchableOpacity,
+  TouchableHighlight,
+  View,
+  Modal,
+  StyleSheet,
+  Text,
+  Alert,
+} from 'react-native';
 import {useSpring, animated} from 'react-spring';
 import {aquaHex, coralHex} from '../styles';
-import CircleButton from './core/circle-button';
 
 export default ({type, location}) => {
   const [toggled, setToggle] = useState(false);
@@ -24,11 +31,32 @@ export default ({type, location}) => {
           ...styles.bottom,
           borderLeftWidth: toggled ? 80 : 40,
           borderRightWidth: toggled ? 80 : 40,
-          marginLeft: toggled ? 22 : 11,
+          marginLeft: toggled ? 20 : 10,
           marginTop: toggled ? 160 : 80,
           borderTopWidth: toggled ? 160 : 80,
         }}
       />
+
+      <Modal animationType="slide" transparent={true} visible={toggled}>
+        <View style={{...styles.modal, marginTop: 22}}>
+          <View
+            style={{
+              height: 200,
+              width: 200,
+              backgroundColor: '#fff',
+              padding: 20,
+            }}>
+            <Text>Hello World!</Text>
+
+            <TouchableHighlight
+              onPress={() => {
+                setToggle(!toggled);
+              }}>
+              <Text>Hide Modal</Text>
+            </TouchableHighlight>
+          </View>
+        </View>
+      </Modal>
     </TouchableOpacity>
   );
 };
@@ -46,17 +74,11 @@ const styles = StyleSheet.create({
     borderTopColor: aquaHex,
     position: 'absolute',
   },
-  /*beacon: {
-    width: 0,
-    height: 0,
-    borderLeftColor: 'transparent',
-    borderRightColor: 'transparent',
-    borderTopColor: aquaHex,
+
+  modal: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  */
-  /*
-  beacon: {
-    backgroundColor: aquaHex,
-  },
-  */
 });

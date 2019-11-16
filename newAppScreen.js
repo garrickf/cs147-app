@@ -176,7 +176,7 @@ const fakeLocations = [
     x: 200,
     y: 500,
   },
-]
+];
 
 const styles = StyleSheet.create({
   view: {

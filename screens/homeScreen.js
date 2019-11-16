@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react';
+import React, {useState, Component} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -22,16 +22,19 @@ import Card from '../components/core/card';
 import AddButton from '../components/add-button';
 import ActionBar from '../components/core/action-bar';
 import Toast from '../components/core/toast';
+import {Provider} from 'react-redux';
+import store from '../redux/store';
+import Beacon from '../components/beacon';
+import Modal from '../components/modal';
 
 class homeScreen extends Component {
   constructor(props) {
     super(props);
   }
 
-  componentWillMount(){
-  }
+  componentWillMount() {}
 
-  render(){
+  render() {
     // const [toastMessage, updateToastMessage] = useState('');
 
     // const setToastMessage = message => {
@@ -44,7 +47,7 @@ class homeScreen extends Component {
     // const toast = <Toast>{toastMessage}</Toast>;
 
     return (
-      <>
+      <Provider store={store}>
         <StatusBar barStyle="dark-content" />
         <ImageBackground
           source={require('../assets/images/map.png')}
@@ -54,21 +57,48 @@ class homeScreen extends Component {
               source={require('../assets/images/overlay.png')}
               style={styles.view}
               imageStyle={styles.background}>
-              <View>
-              </View>
+              <View />
+              <Beacon content={fakeContent[0]} location={fakeLocations[0]} />
 
-              <AddButton 
-                // setToastMessage={setToastMessage} 
+              <Beacon content={fakeContent[1]} location={fakeLocations[1]} />
+
+              <AddButton
+                // setToastMessage={setToastMessage}
                 navigation={this.props.navigation}
-                />
+              />
+
+              <Modal />
               {/* {toast} */}
             </ImageBackground>
           </SafeAreaView>
         </ImageBackground>
-      </>
+      </Provider>
     );
-  };
+  }
 }
+
+const fakeContent = [
+  {
+    header: 'Amazon Rainforest Burning',
+    body:
+      'Dark clouds of smoke smothered cities in Brazil as parts of the Amazon burned at a rate not seen in years, and.... ',
+  },
+  {
+    header: 'Wave Beach',
+    body: null,
+  },
+];
+
+const fakeLocations = [
+  {
+    x: 100,
+    y: 400,
+  },
+  {
+    x: 200,
+    y: 500,
+  },
+];
 
 const styles = StyleSheet.create({
   view: {

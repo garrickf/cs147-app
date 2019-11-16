@@ -38,10 +38,10 @@ export default () => {
   };
 
   const buttons = [
-    {title: 'Change Topic'},
-    {title: 'Help'},
-    {title: 'Account'},
-    {title: 'Settings'},
+    {title: 'Change Topic', image: require('../assets/images/topic.png')},
+    {title: 'Help', image: require('../assets/images/topic.png')},
+    {title: 'Account', image: require('../assets/images/topic.png')},
+    {title: 'Settings', image: require('../assets/images/gear.png')},
   ];
 
   // A trail takes a number (of springs to generate) and a description of the
@@ -86,6 +86,7 @@ export default () => {
                 title={buttons[idx].title}
                 style={styles.button}
                 animateStyle={{opacity: opacity, transform: [{translateY: y}]}}
+                image={buttons[idx].image}
               />
             ))}
           </ScrollView>

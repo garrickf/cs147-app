@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
 } from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
 
 import Text from '../components/core/text';
 import SquareButton from './core/square-button';
@@ -16,11 +17,23 @@ import Logo from '../assets/images/logo.svg';
 
 import {aquaHex, effects, grayHex, whiteHex} from '../styles';
 import {useSpring, animated, useTrail} from 'react-spring';
+import {getPressurePercent} from '../redux/selectors';
+import pressure from '../redux/reducers/pressure';
+import { addPressure } from '../redux/actions';
 
 const AnimatedView = animated(View);
+const AnimatedBar = animated(Bar);
 
 export default () => {
   const [active, setActive] = useState(false);
+  const [prevPercent, setPrevPercent] = useState(0);
+  const percent = useSelector(getPressurePercent);
+
+  // Keep track of the previous percent
+  useEffect(() => {
+    setPrevPercent(percent);
+  }, [percent]);
+
   const FULL_WIDTH = 370;
 
   const props = useSpring({
@@ -33,8 +46,10 @@ export default () => {
     config: {tension: 260},
   });
 
+  const dispatch = useDispatch();
   const handlePress = () => {
     setActive(!active);
+    dispatch(addPressure(5, 'I clicked a button.'));
   };
 
   const buttons = [
@@ -52,6 +67,11 @@ export default () => {
     opacity: active ? 1 : 0,
     from: {y: 30, opacity: 0},
     config: {tension: 300, friction: 25},
+  });
+
+  const barProps = useSpring({
+    from: {p: prevPercent},
+    to: {p: percent},
   });
 
   const bar = (
@@ -72,7 +92,7 @@ export default () => {
       </View>
 
       <View style={styles.barAnchor}>
-        <Bar width={FULL_WIDTH} fill={aquaHex} />
+        <AnimatedBar width={barProps.p.interpolate((p) => (p / 100) * FULL_WIDTH)} fill={aquaHex} />
       </View>
 
       <AnimatedView style={{height: props.height, paddingTop: props.padding}}>

@@ -25,7 +25,8 @@ export default ({type, location, attention}) => {
   });
 
   const displayProps = useSpring({
-    display: active ? 'flex' : 'none',
+    from: {display: 'none'},
+    to: {display: active ? 'flex' : 'none'},
     delay: active ? 0 : 250,
   });
 

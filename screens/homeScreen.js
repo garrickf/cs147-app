@@ -32,8 +32,6 @@ class homeScreen extends Component {
     super(props);
   }
 
-  componentWillMount() {}
-
   render() {
     // const [toastMessage, updateToastMessage] = useState('');
 

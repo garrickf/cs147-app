@@ -26,6 +26,7 @@ import {Provider} from 'react-redux';
 import store from '../redux/store';
 import Beacon from '../components/beacon';
 import Modal from '../components/modal';
+import PressureBar from '../components/pressure-bar';
 
 class homeScreen extends Component {
   constructor(props) {
@@ -55,15 +56,17 @@ class homeScreen extends Component {
               source={require('../assets/images/overlay.png')}
               style={styles.view}
               imageStyle={styles.background}>
-              <View />
-              <Beacon content={fakeContent[0]} location={fakeLocations[0]} />
-
-              <Beacon content={fakeContent[1]} location={fakeLocations[1]} />
-
+              {/* We use a col-reverse layout so the pressure bar is layered on top of its sibling components */}
               <AddButton
                 // setToastMessage={setToastMessage}
                 navigation={this.props.navigation}
               />
+
+              <Beacon content={fakeContent[0]} location={fakeLocations[0]} />
+
+              <Beacon content={fakeContent[1]} location={fakeLocations[1]} />
+
+              <PressureBar />
 
               <Modal />
               {/* {toast} */}
@@ -103,6 +106,7 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
     justifyContent: 'space-between',
+    flexDirection: 'column-reverse',
   },
   background: {
     transform: [{translateY: 60}],

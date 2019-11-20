@@ -12,3 +12,19 @@ export const updateModal = ({header, body}) => ({
 export const toggleModal = () => ({
   type: a.TOGGLE_MODAL,
 });
+
+export const addPressure = (amount, action) => ({
+  type: a.ADD_PRESSURE,
+  data: {
+    amount,
+    action,
+  },
+});
+
+export const emptyPressure = () => ({
+  type: a.EMPTY_PRESSURE,
+});
+
+export const emptyLog = () => ({
+  type: a.EMPTY_LOG,
+});

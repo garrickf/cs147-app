@@ -64,7 +64,11 @@ class homeScreen extends Component {
 
               <Beacon content={fakeContent[0]} location={fakeLocations[0]} />
 
-              <Beacon content={fakeContent[1]} location={fakeLocations[1]} />
+              <Beacon
+                content={fakeContent[1]}
+                location={fakeLocations[1]}
+                mine
+              />
 
               <PressureBar />
 

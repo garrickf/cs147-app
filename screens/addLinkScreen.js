@@ -1,11 +1,8 @@
 import React, { useState, Component } from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
-  ScrollView,
-  View,
-  StatusBar,
-  ImageBackground,
+  Text,
+  View
 } from 'react-native';
 
 import {
@@ -16,103 +13,76 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import Text from '../components/core/text';
-import Button, {BUTTON_TYPES, BUTTON_COLORS} from '../components/core/button';
+import Button, { BUTTON_TYPES, BUTTON_COLORS } from '../components/core/button';
 import Card from '../components/core/card';
-import AddButton from '../components/add-button';
 import ActionBar from '../components/core/action-bar';
-import Toast from '../components/core/toast';
+import { TextInput } from 'react-native';
+import LinkCard from '../components/add-link';
 
 class addLinkScreen extends Component {
   constructor(props) {
     super(props);
   }
 
-  componentWillMount(){
-  }
-
-  render(){
-    // const [toastMessage, updateToastMessage] = useState('');
-
-    // const setToastMessage = message => {
-    //   updateToastMessage(message);
-    //   setTimeout(() => {
-    //     updateToastMessage('');
-    //   }, 4000);
-    // };
-
-    // const toast = <Toast>{toastMessage}</Toast>;
-
+  render() {
     return (
       <>
-        <StatusBar barStyle="dark-content" />
-        <ImageBackground
-          source={require('../assets/images/map.png')}
-          style={styles.view}>
-          <SafeAreaView>
-            <ImageBackground
-              source={require('../assets/images/overlay.png')}
-              style={styles.view}
-              imageStyle={styles.background}>
-              <View>
-              </View>
+      <View style = {styles.BackButton}>
+      <Button
+          title = {'BACK'}
+          type={BUTTON_TYPES.secondary}
+          color={BUTTON_COLORS.coral}
+          onPress={() => this.props.navigation.navigate('Home', {post: 'null'})}
+      />
+      </View>
 
-              <AddButton 
-                // setToastMessage={setToastMessage} 
-                navigation={this.props.navigation}
-                />
-              {/* {toast} */}
-            </ImageBackground>
-          </SafeAreaView>
-        </ImageBackground>
+      <View style={styles.container}>
+        <Text style={styles.sectionTitle}>
+          🗞 Share the News
+          </Text>
+        <TextInput
+          style={{ alignSelf: "stretch", height: 40, paddingHorizontal: 10, borderColor: 'gray', borderWidth: 1, marginVertical:15, paddingVertical:10,}}
+          placeholder="Paste a link"
+          autoCapitalize = 'none'
+          autoCorrect = {false}
+        />
+      </View>
+      <View style = {styles.Post}>
+        <Button
+          title={'POST'}
+          onPress={()=>this.props.navigation.navigate('Home', {post: 'link'})} //to do : figure out how to update with new beacon  
+        />
+      </View>
       </>
-    );
-  };
+    )
+  }
 }
 
 const styles = StyleSheet.create({
-  view: {
-    height: '100%',
-    width: '100%',
-    justifyContent: 'space-between',
+  Post: {
+    flex: 1,
+    flexDirection: 'row', 
+    justifyContent: 'flex-end',
+    marginRight: 20,
   },
-  background: {
-    transform: [{translateY: 60}],
+  BackButton: {
+    alignSelf: 'flex-start',
+    marginTop: 60,
+    marginLeft: 20,
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'flex-start',
+    marginLeft: 20,
+    marginRight:20, 
   },
   sectionTitle: {
     fontSize: 24,
     // fontWeight: '700',
     color: Colors.black,
     fontFamily: 'DMSans-Bold',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
+  }
 });
 
 export default addLinkScreen;

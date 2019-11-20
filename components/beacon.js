@@ -1,7 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import {TouchableOpacity, View, StyleSheet} from 'react-native';
 import {useSpring, animated, useTrail} from 'react-spring';
-import {coralHex, aquaHex, orchidHex, whiteHex, effects} from '../styles';
+import {
+  coralHex,
+  grayHex,
+  aquaHex,
+  orchidHex,
+  whiteHex,
+  effects,
+} from '../styles';
 import {useSelector, useDispatch} from 'react-redux';
 import {toggleModal, updateModal} from '../redux/actions';
 import {getModalActive} from '../redux/selectors';
@@ -47,7 +54,7 @@ const Particle = ({style, scale, toggled}) => {
   );
 };
 
-const Beacon = ({type, location, attention, content, mine}) => {
+const Beacon = ({type, location, attention, content, mine, viewed}) => {
   const [toggled, setToggle] = useState(false);
   const modalActive = useSelector(getModalActive);
 
@@ -103,22 +110,38 @@ const Beacon = ({type, location, attention, content, mine}) => {
         <AnimatedView
           style={{
             ...styles.circle,
-            borderColor: mine ? coralHex : aquaHex,
-            borderWidth: props.scale.interpolate(s => 30 * s),
+            borderColor: viewed ? grayHex : mine ? coralHex : aquaHex,
+            borderWidth: props.scale.interpolate(s =>
+              viewed ? (30 * s) / 2 : 30 * s,
+            ),
             borderRadius: props.scale.interpolate(s => 50 * s),
-            height: props.scale.interpolate(s => 100 * s),
-            width: props.scale.interpolate(s => 100 * s),
+            height: props.scale.interpolate(s =>
+              viewed ? (100 * s) / 2 : 100 * s,
+            ),
+            width: props.scale.interpolate(s =>
+              viewed ? (100 * s) / 2 : 100 * s,
+            ),
           }}
         />
         <AnimatedView
           style={{
             ...styles.bottom,
-            borderTopColor: mine ? coralHex : aquaHex,
-            borderLeftWidth: props.scale.interpolate(s => 45 * s),
-            borderRightWidth: props.scale.interpolate(s => 45 * s),
-            marginLeft: props.scale.interpolate(s => 5 * s),
-            marginTop: props.scale.interpolate(s => 72 * s),
-            borderTopWidth: props.scale.interpolate(s => 90 * s),
+            borderTopColor: viewed ? grayHex : mine ? coralHex : aquaHex,
+            borderLeftWidth: props.scale.interpolate(s =>
+              viewed ? (45 * s) / 2 : 45 * s,
+            ),
+            borderRightWidth: props.scale.interpolate(s =>
+              viewed ? (45 * s) / 2 : 45 * s,
+            ),
+            marginLeft: props.scale.interpolate(s =>
+              viewed ? (5 * s) / 2 : 5 * s,
+            ),
+            marginTop: props.scale.interpolate(s =>
+              viewed ? (72 * s) / 2 : 72 * s,
+            ),
+            borderTopWidth: props.scale.interpolate(s =>
+              viewed ? (90 * s) / 2 : 90 * s,
+            ),
           }}
         />
       </View>
@@ -166,6 +189,8 @@ Beacon.defaultProps = {
     header: 'Header',
     body: 'Body',
   },
+  mine: false,
+  viewed: false,
 };
 
 export default Beacon;

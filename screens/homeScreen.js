@@ -62,7 +62,7 @@ class homeScreen extends Component {
                 navigation={this.props.navigation}
               />
 
-              <Beacon content={fakeContent[0]} location={fakeLocations[0]} />
+              <Beacon content={fakeContent[0]} location={fakeLocations[0]} viewed/>
 
               <Beacon
                 content={fakeContent[1]}

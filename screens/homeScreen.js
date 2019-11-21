@@ -76,29 +76,6 @@ const HomeScreen = ({navigation}) => {
   );
 };
 
-// const fakeContent = [
-//   {
-//     header: 'Amazon Rainforest Burning',
-//     body:
-//       'Dark clouds of smoke smothered cities in Brazil as parts of the Amazon burned at a rate not seen in years, and.... ',
-//   },
-//   {
-//     header: 'Wave Beach',
-//     body: null,
-//   },
-// ];
-
-// const fakeLocations = [
-//   {
-//     x: 100,
-//     y: 200,
-//   },
-//   {
-//     x: 300,
-//     y: 400,
-//   },
-// ];
-
 const styles = StyleSheet.create({
   view: {
     height: '100%',

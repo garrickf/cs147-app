@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {TouchableOpacity, View, StyleSheet} from 'react-native';
 import {useSpring, animated, useTrail} from 'react-spring';
-import {aquaHex, orchidHex, whiteHex, effects} from '../styles';
+import {coralHex, aquaHex, orchidHex, whiteHex, effects} from '../styles';
 import {useSelector, useDispatch} from 'react-redux';
 import {toggleModal, updateModal} from '../redux/actions';
 import {getModalActive} from '../redux/selectors';
@@ -47,7 +47,7 @@ const Particle = ({style, scale, toggled}) => {
   );
 };
 
-const Beacon = ({type, location, attention, content}) => {
+const Beacon = ({type, location, attention, content, mine, viewed}) => {
   const [toggled, setToggle] = useState(false);
   const modalActive = useSelector(getModalActive);
 
@@ -58,9 +58,10 @@ const Beacon = ({type, location, attention, content}) => {
     }
   }, [modalActive]);
 
+  // Set the initial props for how the beacon gets scaled.
   const props = useSpring({
-    scale: toggled ? 0.6 : 0.3,
-    from: {scale: 0.3},
+    scale: toggled ? 0.6 : viewed ? 0.15 : 0.3,
+    from: {scale: viewed ? 0.15 : 0.3},
     config: {tension: 200},
   });
 
@@ -103,8 +104,11 @@ const Beacon = ({type, location, attention, content}) => {
         <AnimatedView
           style={{
             ...styles.circle,
+            borderColor: mine ? aquaHex : coralHex,
             borderWidth: props.scale.interpolate(s => 30 * s),
-            borderRadius: props.scale.interpolate(s => 50 * s),
+            borderRadius: props.scale.interpolate(
+              s => (50 * s) / (type === 'NEWS' ? 2 : 1),
+            ),
             height: props.scale.interpolate(s => 100 * s),
             width: props.scale.interpolate(s => 100 * s),
           }}
@@ -112,6 +116,7 @@ const Beacon = ({type, location, attention, content}) => {
         <AnimatedView
           style={{
             ...styles.bottom,
+            borderTopColor: mine ? aquaHex : coralHex,
             borderLeftWidth: props.scale.interpolate(s => 45 * s),
             borderRightWidth: props.scale.interpolate(s => 45 * s),
             marginLeft: props.scale.interpolate(s => 5 * s),
@@ -129,27 +134,6 @@ const Beacon = ({type, location, attention, content}) => {
           toggled={toggled}
         />
       ))}
-
-      {/* <Modal animationType="slide" transparent={true} visible={toggled}>
-        <View style={{...styles.modal, marginTop: 22}}>
-          <View
-            style={{
-              height: 200,
-              width: 200,
-              backgroundColor: '#fff',
-              padding: 20,
-            }}>
-            <Text>Hello World!</Text>
-
-            <TouchableHighlight
-              onPress={() => {
-                setToggle(!toggled);
-              }}>
-              <Text>Hide Modal</Text>
-            </TouchableHighlight>
-          </View>
-        </View>
-      </Modal> */}
     </AnimatedTouchableOpacity>
   );
 };
@@ -164,20 +148,23 @@ Beacon.defaultProps = {
     header: 'Header',
     body: 'Body',
   },
+  mine: false,
+  viewed: false,
+  type: 'NEWS',
 };
 
 export default Beacon;
 
 const styles = StyleSheet.create({
   circle: {
-    borderColor: aquaHex,
+    //borderColor: aquaHex,
   },
   bottom: {
     width: 0,
     height: 0,
     borderLeftColor: 'transparent',
     borderRightColor: 'transparent',
-    borderTopColor: aquaHex,
+    //borderTopColor: aquaHex,
     position: 'absolute',
   },
   modal: {

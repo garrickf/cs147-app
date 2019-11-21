@@ -1,39 +1,28 @@
-import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  ImageBackground,
-  View
-} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, Text, ImageBackground, View} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import CircleButton from '../components/core/circle-button';
-import { aquaHex, coralHex, blackHex } from '../styles';
-import Button, { BUTTON_TYPES, BUTTON_COLORS } from '../components/core/button';
+import {aquaHex, coralHex, blackHex} from '../styles';
+import Button, {BUTTON_TYPES, BUTTON_COLORS} from '../components/core/button';
 
-import { RNCamera } from 'react-native-camera';
+import {RNCamera} from 'react-native-camera';
+import {addBeacon} from '../redux/actions';
 
-
-export default class addMediaScreen extends Component {
+const AddMediaScreen = ({navigation}) => {
   dispatch = useDispatch();
+  const [path, setPath] = useState(null);
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      path: null
-    };
-  }
-
-  takePicture = async () => {
+  const takePicture = async () => {
     try {
       const data = await this.camera.takePictureAsync();
-      this.setState({ path: data.uri });
-      console.log(path)
+      setPath(data.uri);
+      console.log(path);
     } catch (err) {
       console.log('err: ', err);
     }
   };
 
-  renderCamera() {
+  const renderCamera = () => {
     return (
       <>
         <View style={styles.backButton}>
@@ -41,31 +30,26 @@ export default class addMediaScreen extends Component {
             title={'BACK'}
             type={BUTTON_TYPES.secondary}
             color={BUTTON_COLORS.coral}
-            onPress={() => this.props.navigation.navigate('Home')}
-          >
-          </Button>
+            onPress={() => navigation.navigate('Home')}></Button>
         </View>
         <View style={styles.container}>
           <RNCamera
-            ref={(cam) => {
-              this.camera = cam
+            ref={cam => {
+              this.camera = cam;
             }}
             defaultTouchToFocus
             captureAudio={false}
-            style={styles.view}
-          >
+            style={styles.view}>
             <CircleButton
-              onPress={this.takePicture.bind(this)}
-              style={styles.circleButton}
-            >
-            </CircleButton>
+              onPress={() => takePicture()}
+              style={styles.circleButton}></CircleButton>
           </RNCamera>
         </View>
       </>
-    )
-  }
+    );
+  };
 
-  renderImage() {
+  const renderImage = () => {
     return (
       <>
         <View style={styles.backButton}>
@@ -73,40 +57,41 @@ export default class addMediaScreen extends Component {
             title={'CANCEL'}
             type={BUTTON_TYPES.secondary}
             color={BUTTON_COLORS.coral}
-            onPress={() => this.setState({ path: null })}
+            onPress={() => setPath(null)}
           />
         </View>
 
-        <View style={{ flex: 1 }}>
-          <ImageBackground style = {styles.container}
-            source={{ uri: this.state.path }}
-          >
-          <View style = {styles.postButton}>
-          <Button 
-            title={'POST'}
-            onPress={()=>dispatch(addPin('media'))} 
-          />
-          </View>
+        <View style={{flex: 1}}>
+          <ImageBackground style={styles.container} source={{uri: path}}>
+            <View style={styles.postButton}>
+              <Button
+                title={'POST'}
+                onPress={() => {
+                  dispatch(
+                    addBeacon({
+                      header: 'My New Story!!!',
+                      body: 'I am so hapy to be sharing!!!!',
+                    }),
+                  );
+                  navigation.navigate('Home');
+                }}
+              />
+            </View>
           </ImageBackground>
         </View>
-
       </>
     );
-  }
+  };
 
-  render() {
-    return (
-      <View style={{ flex: 1 }}>
-        {this.state.path ? this.renderImage() : this.renderCamera()}
-      </View>
-    );
-  }
-}
+  return <View style={{flex: 1}}>{path ? renderImage() : renderCamera()}</View>;
+};
+
+export default AddMediaScreen;
 
 const styles = StyleSheet.create({
   postButton: {
-    flex:1,
-    flexDirection: 'row', 
+    flex: 1,
+    flexDirection: 'row',
     justifyContent: 'flex-end',
     alignSelf: 'flex-end',
     paddingRight: 20,
@@ -122,12 +107,12 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   view: {
     flex: 1,
     justifyContent: 'flex-end',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   circleButton: {
     backgroundColor: aquaHex,
@@ -138,4 +123,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 50,
   },
-}); 
+});

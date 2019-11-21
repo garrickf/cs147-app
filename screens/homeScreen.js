@@ -62,11 +62,21 @@ class homeScreen extends Component {
                 navigation={this.props.navigation}
               />
 
-              <Beacon content={fakeContent[0]} location={fakeLocations[0]} viewed/>
+              <Beacon
+                content={fakeContent[0]}
+                location={fakeLocations[0]}
+                viewed
+              />
 
               <Beacon
                 content={fakeContent[1]}
                 location={fakeLocations[1]}
+                type
+              />
+
+              <Beacon
+                content={fakeContent[0]}
+                location={fakeLocations[2]}
                 mine
               />
 
@@ -102,6 +112,10 @@ const fakeLocations = [
   {
     x: 200,
     y: 500,
+  },
+  {
+    x: 300,
+    y: 600,
   },
 ];
 

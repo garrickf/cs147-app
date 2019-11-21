@@ -110,11 +110,13 @@ const Beacon = ({type, location, attention, content, mine, viewed}) => {
         <AnimatedView
           style={{
             ...styles.circle,
-            borderColor: viewed ? grayHex : mine ? coralHex : aquaHex,
+            borderColor: viewed ? grayHex : mine ? aquaHex : coralHex,
             borderWidth: props.scale.interpolate(s =>
               viewed ? (30 * s) / 2 : 30 * s,
             ),
-            borderRadius: props.scale.interpolate(s => 50 * s),
+            borderRadius: props.scale.interpolate(s =>
+              type ? (50 * s) / 2 : 50 * s,
+            ),
             height: props.scale.interpolate(s =>
               viewed ? (100 * s) / 2 : 100 * s,
             ),
@@ -126,7 +128,7 @@ const Beacon = ({type, location, attention, content, mine, viewed}) => {
         <AnimatedView
           style={{
             ...styles.bottom,
-            borderTopColor: viewed ? grayHex : mine ? coralHex : aquaHex,
+            borderTopColor: viewed ? grayHex : mine ? aquaHex : coralHex,
             borderLeftWidth: props.scale.interpolate(s =>
               viewed ? (45 * s) / 2 : 45 * s,
             ),

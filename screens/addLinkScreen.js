@@ -1,13 +1,9 @@
-import React, { useState, Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 
-import { addPin } from '../redux/actions';
+import {addBeacon} from '../redux/actions';
 
-import {useSelector, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 import {
   Header,
@@ -17,58 +13,65 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import Button, { BUTTON_TYPES, BUTTON_COLORS } from '../components/core/button';
+import Button, {BUTTON_TYPES, BUTTON_COLORS} from '../components/core/button';
 import Card from '../components/core/card';
 import ActionBar from '../components/core/action-bar';
-import { TextInput } from 'react-native';
+import {TextInput} from 'react-native';
 import LinkCard from '../components/add-link';
 
-class addLinkScreen extends Component {
-  constructor(props) {
-    super(props);
-  }
+const AddLinkScreen = ({navigation}) => {
+  const dispatch = useDispatch();
 
-  render() {
-    return (
-      <>
-      <View style = {styles.BackButton}>
-      <Button
-          title = {'BACK'}
+  return (
+    <>
+      <View style={styles.BackButton}>
+        <Button
+          title={'BACK'}
           type={BUTTON_TYPES.secondary}
           color={BUTTON_COLORS.coral}
-          onPress={() => this.props.navigation.navigate('Home')}
-      />
+          onPress={() => navigation.navigate('Home')}
+        />
       </View>
 
       <View style={styles.container}>
-        <Text style={styles.sectionTitle}>
-          🗞 Share the News
-          </Text>
+        <Text style={styles.sectionTitle}>🗞 Share the News</Text>
         <TextInput
-          style={{ alignSelf: "stretch", height: 40, paddingHorizontal: 10, borderColor: 'gray', borderWidth: 1, marginVertical:15, paddingVertical:10,}}
+          style={{
+            alignSelf: 'stretch',
+            height: 40,
+            paddingHorizontal: 10,
+            borderColor: 'gray',
+            borderWidth: 1,
+            marginVertical: 15,
+            paddingVertical: 10,
+          }}
           placeholder="Paste a link"
-          autoCapitalize = 'none'
-          autoCorrect = {false}
+          autoCapitalize="none"
+          autoCorrect={false}
         />
       </View>
-      <View style = {styles.Post}>
+      <View style={styles.Post}>
         <Button
           title={'POST'}
-          onPress={()=>{
-            useDispatch(addPin, 'link')
-            this.props.navigation.navigate('Home')}
-          }  
+          onPress={() => {
+            dispatch(
+              addBeacon({
+                header: 'My New Story!!!',
+                body: 'I am so hapy to be sharing!!!!',
+              }),
+            );
+            navigation.navigate('Home');
+          }}
         />
       </View>
-      </>
-    )
-  }
-}
+    </>
+  );
+};
 
 const styles = StyleSheet.create({
   Post: {
     flex: 1,
-    flexDirection: 'row', 
+    flexDirection: 'row',
     justifyContent: 'flex-end',
     marginRight: 20,
   },
@@ -82,14 +85,14 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'flex-start',
     marginLeft: 20,
-    marginRight:20, 
+    marginRight: 20,
   },
   sectionTitle: {
     fontSize: 24,
     // fontWeight: '700',
     color: Colors.black,
     fontFamily: 'DMSans-Bold',
-  }
+  },
 });
 
-export default addLinkScreen;
+export default AddLinkScreen;

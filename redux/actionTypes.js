@@ -8,3 +8,4 @@ export const EMPTY_PRESSURE = '(Pressure) Empty pressure';
 export const EMPTY_LOG = '(Pressure) Empty activity log';
 
 // Add pin
+export const ADD_PIN = '(Beacon) Add a beacon to the map';

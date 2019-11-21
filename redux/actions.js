@@ -29,7 +29,7 @@ export const emptyLog = () => ({
   type: a.EMPTY_LOG,
 });
 
-export const addPin = (content_type) =>({
-  type: 'ADD_PIN',
-  payload: content_type,
-})
+export const addBeacon = beacon => ({
+  type: a.ADD_PIN,
+  beacon: beacon,
+});

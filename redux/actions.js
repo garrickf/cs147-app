@@ -30,6 +30,6 @@ export const emptyLog = () => ({
 });
 
 export const addPin = (content_type) =>({
-  type: a.NEW_PIN,
+  type: 'ADD_PIN',
   payload: content_type,
 })

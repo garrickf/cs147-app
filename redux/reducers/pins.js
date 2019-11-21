@@ -44,19 +44,15 @@ const initialState = {
 const pinReducer = (state = initialState, action) => {
     if (action.type == 'ADD_PIN') {
         if (action.payload == 'link') {
-            return Object.assign({}, state, {
-                current: state.current.concat(<Beacon content={fakeContent[3]} location={fakeLocations[2]} />)
-            });
+            return {
+                current: [...current, <Beacon content={fakeContent[3]} location={fakeLocations[2]} />]
+            }
         }
         if (action.payload == 'media') {
-            return Object.assign({}, state, {
-                current: state.current.concat(<Beacon content={fakeContent[2]} location={fakeLocations[2]} />)
-            });
-        }
+            return {
+                current: [...current, <Beacon content={fakeContent[2]} location={fakeLocations[2]} />]
+            }
+        };
     }
     return state;
 }
-
-export default combineReducers({
-    pins: pinReducer,
-});

@@ -7,6 +7,7 @@ import {
   StatusBar,
   ImageBackground,
 } from 'react-native';
+import {useSelector} from 'react-redux';
 
 import {
   Header,
@@ -22,102 +23,58 @@ import Card from '../components/core/card';
 import AddButton from '../components/add-button';
 import ActionBar from '../components/core/action-bar';
 import Toast from '../components/core/toast';
-import {Provider} from 'react-redux';
 import store from '../redux/store';
 import Beacon from '../components/beacon';
 import Modal from '../components/modal';
 import PressureBar from '../components/pressure-bar';
+import {getBeacons} from '../redux/selectors';
 
-class homeScreen extends Component {
-  constructor(props) {
-    super(props);
-  }
+const HomeScreen = ({navigation}) => {
+  // const [toastMessage, updateToastMessage] = useState('');
 
-  render() {
-    // const [toastMessage, updateToastMessage] = useState('');
+  // const setToastMessage = message => {
+  //   updateToastMessage(message);
+  //   setTimeout(() => {
+  //     updateToastMessage('');
+  //   }, 4000);
+  // };
 
-    // const setToastMessage = message => {
-    //   updateToastMessage(message);
-    //   setTimeout(() => {
-    //     updateToastMessage('');
-    //   }, 4000);
-    // };
+  // const toast = <Toast>{toastMessage}</Toast>;
 
-    // const toast = <Toast>{toastMessage}</Toast>;
+  const beacons = useSelector(getBeacons);
+  console.log(beacons);
 
-    return (
-      <Provider store={store}>
-        <StatusBar barStyle="dark-content" />
-        <ImageBackground
-          source={require('../assets/images/map.png')}
-          style={styles.view}>
-          <SafeAreaView>
-            <ImageBackground
-              source={require('../assets/images/overlay.png')}
-              style={styles.view}
-              imageStyle={styles.background}>
-              {/* We use a col-reverse layout so the pressure bar is layered on top of its sibling components */}
-              <AddButton
-                // setToastMessage={setToastMessage}
-                navigation={this.props.navigation}
-              />
+  return (
+    <>
+      <StatusBar barStyle="dark-content" />
+      <ImageBackground
+        source={require('../assets/images/map.png')}
+        style={styles.view}>
+        <SafeAreaView>
+          <ImageBackground
+            source={require('../assets/images/overlay.png')}
+            style={styles.view}
+            imageStyle={styles.background}>
+            {/* We use a col-reverse layout so the pressure bar is layered on top of its sibling components */}
+            <AddButton
+              // setToastMessage={setToastMessage}
+              navigation={navigation}
+            />
 
-              <Beacon
-                content={fakeContent[0]}
-                location={fakeLocations[0]}
-                viewed
-                type={'MEDIA'}
-              />
+            {beacons.map(({header, body, location}) => (
+              <Beacon content={{header, body}} location={location} />
+            ))}
 
-              <Beacon
-                content={fakeContent[1]}
-                location={fakeLocations[1]}
-              />
+            <PressureBar />
 
-              <Beacon
-                content={fakeContent[0]}
-                location={fakeLocations[2]}
-                mine
-              />
-
-              <PressureBar />
-
-              <Modal />
-              {/* {toast} */}
-            </ImageBackground>
-          </SafeAreaView>
-        </ImageBackground>
-      </Provider>
-    );
-  }
-}
-
-const fakeContent = [
-  {
-    header: 'Amazon Rainforest Burning',
-    body:
-      'Dark clouds of smoke smothered cities in Brazil as parts of the Amazon burned at a rate not seen in years, and.... ',
-  },
-  {
-    header: 'Wave Beach',
-    body: null,
-  },
-];
-
-const fakeLocations = [
-  {
-    x: 100,
-    y: 400,
-  },
-  {
-    x: 200,
-    y: 500,
-  },
-  {
-    x: 300,
-    y: 600,
-  },
-];
+            <Modal />
+            {/* {toast} */}
+          </ImageBackground>
+        </SafeAreaView>
+      </ImageBackground>
+    </>
+  );
+};
 
 const styles = StyleSheet.create({
   view: {
@@ -165,4 +122,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default homeScreen;
+export default HomeScreen;

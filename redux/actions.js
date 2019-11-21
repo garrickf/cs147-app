@@ -28,3 +28,8 @@ export const emptyPressure = () => ({
 export const emptyLog = () => ({
   type: a.EMPTY_LOG,
 });
+
+export const addBeacon = beacon => ({
+  type: a.ADD_PIN,
+  beacon: beacon,
+});

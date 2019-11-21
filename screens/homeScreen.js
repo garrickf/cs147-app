@@ -66,12 +66,12 @@ class homeScreen extends Component {
                 content={fakeContent[0]}
                 location={fakeLocations[0]}
                 viewed
+                type={'MEDIA'}
               />
 
               <Beacon
                 content={fakeContent[1]}
                 location={fakeLocations[1]}
-                type
               />
 
               <Beacon

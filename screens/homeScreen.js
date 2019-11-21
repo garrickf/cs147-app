@@ -62,9 +62,9 @@ class homeScreen extends Component {
                 navigation={this.props.navigation}
               />
 
-              <Beacon content={fakeContent[0]} location={fakeLocations[0]} />
+              {/* <Beacon content={fakeContent[0]} location={fakeLocations[0]} />
 
-              <Beacon content={fakeContent[1]} location={fakeLocations[1]} />
+              <Beacon content={fakeContent[1]} location={fakeLocations[1]} /> */}
 
               <PressureBar />
 
@@ -78,28 +78,28 @@ class homeScreen extends Component {
   }
 }
 
-const fakeContent = [
-  {
-    header: 'Amazon Rainforest Burning',
-    body:
-      'Dark clouds of smoke smothered cities in Brazil as parts of the Amazon burned at a rate not seen in years, and.... ',
-  },
-  {
-    header: 'Wave Beach',
-    body: null,
-  },
-];
+// const fakeContent = [
+//   {
+//     header: 'Amazon Rainforest Burning',
+//     body:
+//       'Dark clouds of smoke smothered cities in Brazil as parts of the Amazon burned at a rate not seen in years, and.... ',
+//   },
+//   {
+//     header: 'Wave Beach',
+//     body: null,
+//   },
+// ];
 
-const fakeLocations = [
-  {
-    x: 100,
-    y: 400,
-  },
-  {
-    x: 200,
-    y: 500,
-  },
-];
+// const fakeLocations = [
+//   {
+//     x: 100,
+//     y: 200,
+//   },
+//   {
+//     x: 300,
+//     y: 400,
+//   },
+// ];
 
 const styles = StyleSheet.create({
   view: {

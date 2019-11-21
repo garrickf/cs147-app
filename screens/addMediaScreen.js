@@ -5,7 +5,7 @@ import {
   ImageBackground,
   View
 } from 'react-native';
-
+import {useSelector, useDispatch} from 'react-redux';
 import CircleButton from '../components/core/circle-button';
 import { aquaHex, coralHex, blackHex } from '../styles';
 import Button, { BUTTON_TYPES, BUTTON_COLORS } from '../components/core/button';
@@ -14,6 +14,7 @@ import { RNCamera } from 'react-native-camera';
 
 
 export default class addMediaScreen extends Component {
+  dispatch = useDispatch();
 
   constructor(props) {
     super(props);
@@ -40,7 +41,7 @@ export default class addMediaScreen extends Component {
             title={'BACK'}
             type={BUTTON_TYPES.secondary}
             color={BUTTON_COLORS.coral}
-            onPress={() => this.props.navigation.navigate('Home', { post: null })}
+            onPress={() => this.props.navigation.navigate('Home')}
           >
           </Button>
         </View>
@@ -83,7 +84,7 @@ export default class addMediaScreen extends Component {
           <View style = {styles.postButton}>
           <Button 
             title={'POST'}
-            onPress={()=>this.props.navigation.navigate('Home', {post: 'media'})} //to do : figure out how to update with new beacon  
+            onPress={()=>dispatch(addPin('media'))} 
           />
           </View>
           </ImageBackground>

@@ -28,3 +28,8 @@ export const emptyPressure = () => ({
 export const emptyLog = () => ({
   type: a.EMPTY_LOG,
 });
+
+export const addPin = (content_type) =>({
+  type: a.NEW_PIN,
+  payload: content_type,
+})

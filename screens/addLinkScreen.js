@@ -5,6 +5,10 @@ import {
   View
 } from 'react-native';
 
+import { addPin } from '../redux/actions';
+
+import {useSelector, useDispatch} from 'react-redux';
+
 import {
   Header,
   LearnMoreLinks,
@@ -32,7 +36,7 @@ class addLinkScreen extends Component {
           title = {'BACK'}
           type={BUTTON_TYPES.secondary}
           color={BUTTON_COLORS.coral}
-          onPress={() => this.props.navigation.navigate('Home', {post: 'null'})}
+          onPress={() => this.props.navigation.navigate('Home')}
       />
       </View>
 
@@ -50,7 +54,10 @@ class addLinkScreen extends Component {
       <View style = {styles.Post}>
         <Button
           title={'POST'}
-          onPress={()=>this.props.navigation.navigate('Home', {post: 'link'})} //to do : figure out how to update with new beacon  
+          onPress={()=>{
+            useDispatch(addPin, 'link')
+            this.props.navigation.navigate('Home')}
+          }  
         />
       </View>
       </>

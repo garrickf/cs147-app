@@ -6,6 +6,8 @@ import addMediaScreen from './screens/addMediaScreen.js';
 import homeScreen from './screens/homeScreen.js';
 import {Provider} from 'react-redux';
 import store from './redux/store';
+import { aquaHex } from './styles.js';
+import displayPhotoScreen from './screens/displayPhoto.js'
 
 /**
  * Creates the navigation for the app, wraps it in a container, then wraps that
@@ -14,13 +16,37 @@ import store from './redux/store';
 
 const AppNavigator = createStackNavigator(
   {
-    Home: {screen: homeScreen},
-    AddLink: {screen: addLinkScreen},
-    AddMedia: {screen: addMediaScreen},
+    Home: {screen: homeScreen,
+    navigationOptions: {
+      header:null,
+      headerBackTitle: ' BACK',
+    }},
+    AddLink: {screen: addLinkScreen,
+      navigationOptions: {
+        headerBackTitleStyle: {
+          fontFamily:'DM Sans'
+        },
+        headerTintColor: aquaHex,
+        }
+      },
+    AddMedia: {screen: addMediaScreen,
+      navigationOptions: {
+        headerBackTitleStyle: {
+          fontFamily:'DM Sans'
+        },
+        headerTintColor: aquaHex,
+        headerBackTitle: ' CANCEL',
+        }},
+    DisplayPhoto: {screen: displayPhotoScreen,
+      navigationOptions: {
+        headerBackTitleStyle: {
+          fontFamily:'DM Sans'
+        },
+        headerTintColor: aquaHex,
+        }},
   },
   {
     initialRouteName: 'Home',
-    headerMode: 'none',
     transitionConfig: () => ({
       transitionSpec: {
         duration: 0,

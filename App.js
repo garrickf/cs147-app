@@ -24,25 +24,31 @@ const AppNavigator = createStackNavigator(
     AddLink: {screen: addLinkScreen,
       navigationOptions: {
         headerBackTitleStyle: {
-          fontFamily:'DM Sans'
+          fontFamily:'DM Sans',
+          fontWeight:'bold',
         },
         headerTintColor: aquaHex,
+        headerTransparent: true,
         }
       },
     AddMedia: {screen: addMediaScreen,
       navigationOptions: {
         headerBackTitleStyle: {
-          fontFamily:'DM Sans'
+          fontFamily:'DM Sans',
+          fontWeight:'bold',
         },
         headerTintColor: aquaHex,
         headerBackTitle: ' CANCEL',
+        headerTransparent: true,
         }},
     DisplayPhoto: {screen: displayPhotoScreen,
       navigationOptions: {
         headerBackTitleStyle: {
-          fontFamily:'DM Sans'
+          fontFamily:'DM Sans',
+          fontWeight:'bold',
         },
         headerTintColor: aquaHex,
+        headerTransparent: true,
         }},
   },
   {

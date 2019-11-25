@@ -67,7 +67,8 @@ const HomeScreen = ({navigation}) => {
 
             <PressureBar />
 
-            <Modal />
+            <Modal 
+            navigation={navigation}/>
             {/* {toast} */}
           </ImageBackground>
         </SafeAreaView>

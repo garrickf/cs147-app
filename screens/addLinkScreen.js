@@ -58,6 +58,8 @@ const AddLinkScreen = ({navigation}) => {
               addBeacon({
                 header: 'My New Story!!!',
                 body: 'I am so hapy to be sharing!!!!',
+                mine: true,
+                type: 'NEWS',
               }),
             );
             navigation.navigate('Home');

@@ -61,8 +61,14 @@ const HomeScreen = ({navigation}) => {
               navigation={navigation}
             />
 
-            {beacons.map(({header, body, location}) => (
-              <Beacon content={{header, body}} location={location} />
+            {beacons.map(({header, body, location, mine, read, type}) => (
+              <Beacon
+                content={{header, body}}
+                location={location}
+                type={type}
+                viewed={read}
+                mine={mine}
+              />
             ))}
 
             <PressureBar />

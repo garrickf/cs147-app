@@ -61,8 +61,14 @@ const HomeScreen = ({navigation}) => {
               navigation={navigation}
             />
 
-            {beacons.map(({header, body, location}) => (
-              <Beacon content={{header, body}} location={location} />
+            {beacons.map(({header, body, location, mine, read, type}) => (
+              <Beacon
+                content={{header, body}}
+                location={location}
+                type={type}
+                viewed={read}
+                mine={mine}
+              />
             ))}
 
             <PressureBar />
@@ -76,29 +82,6 @@ const HomeScreen = ({navigation}) => {
     </>
   );
 };
-
-// const fakeContent = [
-//   {
-//     header: 'Amazon Rainforest Burning',
-//     body:
-//       'Dark clouds of smoke smothered cities in Brazil as parts of the Amazon burned at a rate not seen in years, and.... ',
-//   },
-//   {
-//     header: 'Wave Beach',
-//     body: null,
-//   },
-// ];
-
-// const fakeLocations = [
-//   {
-//     x: 100,
-//     y: 200,
-//   },
-//   {
-//     x: 300,
-//     y: 400,
-//   },
-// ];
 
 const styles = StyleSheet.create({
   view: {

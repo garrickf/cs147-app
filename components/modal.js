@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Linking} from 'react-native';
+import {View, StyleSheet, TouchableWithoutFeedback} from 'react-native';
 import {useSpring, animated} from 'react-spring';
 import Card from './core/card';
 import Text from './core/text';
@@ -37,43 +37,64 @@ export default ({type, location, attention, navigation}) => {
   };
 
   const viewImage = () => {
-    navigation.navigate('ViewImage', {path: require('../assets/images/map.png')})
-  }
+    navigation.navigate('ViewImage', {
+      path: require('../assets/images/map.png'),
+    });
+  };
 
   const openLink = () => {
-    Linking.openURL('http://www.bbc.co.uk').catch((err) => console.error('An error occurred', err));
-  }
+    Linking.openURL('http://www.bbc.co.uk').catch(err =>
+      console.error('An error occurred', err),
+    );
+  };
+
+  const handleBackgroundPress = () => {
+    dispatch(toggleModal());
+  };
 
   // Note: box-none means view cannot be target of touch events, but its subviews can be.
   return (
-    <AnimatedView
-      style={{
-        ...styles.modalContainer,
-        display: displayProps.display,
-        opacity: props.opacity,
-        transform: [{translateY: props.y}],
-      }}
-      pointerEvents="box-none">
-      <Card header={header} style={{...styles.modal}}>
-        <Text>{body}</Text>
+    <>
+      <TouchableWithoutFeedback onPress={handleBackgroundPress}>
+        <View
+          style={{...styles.backingCard, display: active ? 'flex' : 'none'}}
+        />
+      </TouchableWithoutFeedback>
+      <AnimatedView
+        style={{
+          ...styles.modalContainer,
+          display: displayProps.display,
+          opacity: props.opacity,
+          transform: [{translateY: props.y}],
+        }}
+        pointerEvents="box-none">
+        <Card header={header} style={{...styles.modal}}>
+          <Text>{body}</Text>
 
-        <ActionBar>
-          <Button
-            title={'Back'}
-            type={BUTTON_TYPES.secondary}
-            color={BUTTON_COLORS.coral}
-            onPress={handlePress}
-          />
-          <Button 
-            title={'Read'}
-            onPress={viewImage} />
-        </ActionBar>
-      </Card>
-    </AnimatedView>
+          <ActionBar>
+            <Button
+              title={'Back'}
+              type={BUTTON_TYPES.secondary}
+              color={BUTTON_COLORS.coral}
+              onPress={handlePress}
+            />
+            <Button title={'Read'} onPress={viewImage} />
+          </ActionBar>
+        </Card>
+      </AnimatedView>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
+  backingCard: {
+    // Styles the backing card which covers the entire screen and can be touched
+    // to close the modal.
+    position: 'absolute',
+    width: '100%',
+    height: '120%',
+    top: -50,
+  },
   modalContainer: {
     position: 'absolute',
     width: '100%',

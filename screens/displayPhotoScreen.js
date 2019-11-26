@@ -1,46 +1,37 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, ImageBackground, View} from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
-import RecordingButton from '../components/recording-button';
 import {aquaHex, coralHex, blackHex} from '../styles';
 import Button, {BUTTON_TYPES, BUTTON_COLORS} from '../components/core/button';
 
-import {RNCamera} from 'react-native-camera';
 import {addBeacon} from '../redux/actions';
 
-const AddMediaScreen = ({navigation}) => {
-  dispatch = useDispatch();
-  const [path, setPath] = useState(null);
-
-  const takePicture = async () => {
-    try {
-      const data = await this.camera.takePictureAsync();
-      navigation.navigate('DisplayPhoto', {path: data.uri});
-    } catch (err) {
-      console.log('err: ', err);
-    }
-  };
-
+const displayPhoto = ({navigation}) => {
+    pathe = navigation.getParam('path', 'null');
     return (
       <>
-        <View style={styles.container}>
-          <RNCamera
-            ref={cam => {
-              this.camera = cam;
-            }}
-            defaultTouchToFocus
-            captureAudio={false}
-            style={styles.view}>
-            <RecordingButton
-              onPress={() => takePicture()}
-              style={styles.circleButton}></RecordingButton>
-          </RNCamera>
+        <View style={{flex: 1}}>
+          <ImageBackground style={styles.container} source={{uri: pathe}}>
+            <View style={styles.postButton}>
+              <Button
+                title={'POST'}
+                onPress={() => {
+                  dispatch(
+                    addBeacon({
+                      header: 'My New Story!!!',
+                      body: 'I am so happy to be sharing!!!!',
+                    }),
+                  );
+                  navigation.navigate('Home');
+                }}
+              />
+            </View>
+          </ImageBackground>
         </View>
       </>
     );
   };
 
-export default AddMediaScreen;
+export default displayPhoto;
 
 const styles = StyleSheet.create({
   postButton: {

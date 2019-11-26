@@ -12,12 +12,12 @@ import {toggleModal} from '../redux/actions';
 
 const AnimatedView = animated(View);
 
-export default ({type, location, attention}) => {
+export default ({type, location, attention, navigation}) => {
   const header = useSelector(getModalHeader);
   const body = useSelector(getModalBody);
   const active = useSelector(getModalActive);
 
-  // See toast for the original code...
+  // See toast for the original clode...
   const props = useSpring({
     opacity: active ? 1 : 0,
     y: active ? 0 : 10,
@@ -36,6 +36,18 @@ export default ({type, location, attention}) => {
     dispatch(toggleModal());
   };
 
+  const viewImage = () => {
+    navigation.navigate('ViewImage', {
+      path: require('../assets/images/map.png'),
+    });
+  };
+
+  const openLink = () => {
+    Linking.openURL('http://www.bbc.co.uk').catch(err =>
+      console.error('An error occurred', err),
+    );
+  };
+
   const handleBackgroundPress = () => {
     dispatch(toggleModal());
   };
@@ -44,7 +56,9 @@ export default ({type, location, attention}) => {
   return (
     <>
       <TouchableWithoutFeedback onPress={handleBackgroundPress}>
-        <View style={{...styles.backingCard, display: active ? 'flex' : 'none'}} />
+        <View
+          style={{...styles.backingCard, display: active ? 'flex' : 'none'}}
+        />
       </TouchableWithoutFeedback>
       <AnimatedView
         style={{
@@ -64,7 +78,7 @@ export default ({type, location, attention}) => {
               color={BUTTON_COLORS.coral}
               onPress={handlePress}
             />
-            <Button title={'Read'} />
+            <Button title={'Read'} onPress={viewImage} />
           </ActionBar>
         </Card>
       </AnimatedView>

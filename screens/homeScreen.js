@@ -42,7 +42,6 @@ const HomeScreen = ({navigation}) => {
   // const toast = <Toast>{toastMessage}</Toast>;
 
   const beacons = useSelector(getBeacons);
-  console.log(beacons);
 
   return (
     <>

@@ -23,6 +23,7 @@ const fakeContent = [
     mine: false,
     read: false,
     type: 'NEWS',
+    // contentPath: 'https://www.bbc.com/news/world-latin-america-49971563',
   },
   {
     header: 'Wave Beach',

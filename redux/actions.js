@@ -1,11 +1,12 @@
 import * as a from './actionTypes';
 
 // Modal actions
-export const updateModal = ({header, body}) => ({
+export const updateModal = ({header, body, type}) => ({
   type: a.UPDATE_MODAL,
   data: {
     header,
     body,
+    type,
   },
 });
 

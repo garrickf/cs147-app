@@ -1,4 +1,4 @@
-import React, {useState, Component} from 'react';
+import React, {useState, Component, useRef, useEffect} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -6,8 +6,13 @@ import {
   View,
   StatusBar,
   ImageBackground,
+  Alert,
 } from 'react-native';
 import {useSelector} from 'react-redux';
+
+import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import Geolocation from 'react-native-geolocation-service';
+import mapStyle from '../maps/style';
 
 import {
   Header,
@@ -44,12 +49,58 @@ const HomeScreen = ({navigation}) => {
   const beacons = useSelector(getBeacons);
   console.log(beacons);
 
+  let camera = {};
+  Geolocation.getCurrentPosition(({coords, timestamp}) => {
+    console.log(coords);
+    camera = {
+      center: {
+        latitude: coords.latitude,
+        longitude: coords.longitude,
+      },
+      pitch: 30,
+      heading: 0,
+      zoom: 14,
+    };
+  });
+
+  const map = useRef(null);
+
+  useEffect(() => {
+    if (map.current) {
+      setCamera();
+    }
+  });
+
+  const setCamera = async () => {
+    const cameraObj = await map.current.getCamera();
+    // Note that we do not have to pass a full camera object to setCamera().
+    // Similar to setState(), we can pass only the properties you like to change.
+    // Alert.alert('Current camera', JSON.stringify(camera), [{text: 'OK'}], {
+    //   cancelable: true,
+    // });
+    map.current.setCamera({...camera});
+  };
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <ImageBackground
-        source={require('../assets/images/map.png')}
-        style={styles.view}>
+      <MapView
+        provider={PROVIDER_GOOGLE}
+        customMapStyle={mapStyle}
+        style={{
+          width: '100%',
+          height: '150%', // Makes center correspond with our center
+          position: 'absolute',
+        }}
+        camera={{
+          altitude: 9000,
+          pitch: 0,
+          heading: 0,
+          zoom: 0,
+        }}
+        ref={map}
+      />
+      <View style={styles.view}>
         <SafeAreaView>
           <ImageBackground
             source={require('../assets/images/overlay.png')}
@@ -78,7 +129,7 @@ const HomeScreen = ({navigation}) => {
             {/* {toast} */}
           </ImageBackground>
         </SafeAreaView>
-      </ImageBackground>
+      </View>
     </>
   );
 };

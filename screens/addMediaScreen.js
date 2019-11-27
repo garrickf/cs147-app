@@ -9,7 +9,7 @@ import {RNCamera} from 'react-native-camera';
 import {addBeacon} from '../redux/actions';
 
 const AddMediaScreen = ({navigation}) => {
-  dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [path, setPath] = useState(null);
 
   const takePicture = async () => {
@@ -30,7 +30,8 @@ const AddMediaScreen = ({navigation}) => {
             title={'BACK'}
             type={BUTTON_TYPES.secondary}
             color={BUTTON_COLORS.coral}
-            onPress={() => navigation.navigate('Home')}></Button>
+            onPress={() => navigation.navigate('Home')}
+          />
         </View>
         <View style={styles.container}>
           <RNCamera
@@ -42,7 +43,8 @@ const AddMediaScreen = ({navigation}) => {
             style={styles.view}>
             <CircleButton
               onPress={() => takePicture()}
-              style={styles.circleButton}></CircleButton>
+              style={styles.circleButton}
+            />
           </RNCamera>
         </View>
       </>

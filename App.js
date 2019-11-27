@@ -3,6 +3,7 @@ import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import addLinkScreen from './screens/addLinkScreen.js';
 import addMediaScreen from './screens/addMediaScreen.js';
+import rideWaveScreen from './screens/rideWaveScreen.js';
 import homeScreen from './screens/homeScreen.js';
 import {Provider} from 'react-redux';
 import store from './redux/store';
@@ -17,6 +18,7 @@ const AppNavigator = createStackNavigator(
     Home: {screen: homeScreen},
     AddLink: {screen: addLinkScreen},
     AddMedia: {screen: addMediaScreen},
+    RideWave: {screen: rideWaveScreen},
   },
   {
     initialRouteName: 'Home',

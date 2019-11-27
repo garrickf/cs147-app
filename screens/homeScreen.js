@@ -65,7 +65,7 @@ const HomeScreen = ({navigation}) => {
               <Beacon content={{header, body}} location={location} />
             ))}
 
-            <PressureBar />
+            <PressureBar navigation={navigation} />
 
             <Modal />
             {/* {toast} */}

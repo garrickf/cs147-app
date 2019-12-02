@@ -22,6 +22,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import Current from '../components/current-location'
 import Text from '../components/core/text';
 import Button, {BUTTON_TYPES, BUTTON_COLORS} from '../components/core/button';
 import Card from '../components/core/card';
@@ -47,7 +48,6 @@ const HomeScreen = ({navigation}) => {
   // const toast = <Toast>{toastMessage}</Toast>;
 
   const beacons = useSelector(getBeacons);
-  console.log(beacons);
 
   let camera = {};
   Geolocation.getCurrentPosition(({coords, timestamp}) => {
@@ -111,7 +111,7 @@ const HomeScreen = ({navigation}) => {
               // setToastMessage={setToastMessage}
               navigation={navigation}
             />
-
+                <Current/>
             {beacons.map(({header, body, location, mine, read, type}) => (
               <Beacon
                 content={{header, body}}

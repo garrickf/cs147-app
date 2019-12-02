@@ -84,6 +84,7 @@ const Beacon = ({type, location, attention, content, mine, viewed}) => {
       updateModal({
         header: content.header,
         body: content.body,
+        type: type,
       }),
     );
     dispatch(toggleModal());

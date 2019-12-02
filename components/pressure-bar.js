@@ -39,7 +39,7 @@ export default ({navigation}) => {
   const props = useSpring({
     from: {top: -420, height: 0, padding: 0},
     to: {
-      top: active ? -70 : -420,
+      top: active ? -60 : -420,
       height: active ? 175 : 0,
       padding: active ? 20 : 0,
     },
@@ -177,11 +177,12 @@ const styles = StyleSheet.create({
     width: 370,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 10,
+    marginTop: 14,
   },
   infoBarText: {
     fontWeight: 'bold',
     color: aquaHex,
+    fontSize: 18,
   },
   button: {
     paddingHorizontal: 5,

@@ -1,12 +1,7 @@
 import React from 'react';
-import {
-  ImageBackground,
-  StyleSheet,
-  ScrollView,
-  Text,
-  View,
-} from 'react-native';
+import {StyleSheet, ScrollView, Text, View} from 'react-native';
 import {useDispatch} from 'react-redux';
+import {useSpring, animated, useTrail} from 'react-spring';
 
 import {
   Header,
@@ -21,8 +16,32 @@ import Card from '../components/core/card';
 import ActionBar from '../components/core/action-bar';
 import LinkCard from '../components/add-link';
 
+const AnimatedView = animated(View);
+
 const RideWaveScreen = ({navigation}) => {
   const dispatch = useDispatch();
+
+  const events = [
+    {
+      title: 'Climate Change Rally',
+      image: require('../assets/images/rally.png'),
+    },
+    {
+      title: 'WWF Beach Clean-up',
+      image: require('../assets/images/beachcleanup.png'),
+    },
+    {
+      title: 'Join a Green Book Club',
+      image: require('../assets/images/bookclub.png'),
+    },
+  ];
+
+  const trail = useTrail(events.length, {
+    y: 30,
+    opacity: 0,
+    from: {y: 30, opacity: 0},
+    config: {tension: 300, friction: 25},
+  });
 
   return (
     <>
@@ -35,9 +54,23 @@ const RideWaveScreen = ({navigation}) => {
           Swipe to explore how you can ride the wave!
         </Text>
       </View>
+
+      <ScrollView
+        horizontal
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}>
+        {trail.map(({y, opacity}, idx) => (
+          <Card
+            title={events[idx].title}
+            style={styles.eventCard}
+            image={events[idx].image}
+          />
+        ))}
+      </ScrollView>
+
       <View style={styles.BackButton}>
         <Button
-          title={'NOT FEELING WAVY TODAY'}
+          title={'NOT FEELING WAVY'}
           type={BUTTON_TYPES.secondary}
           color={BUTTON_COLORS.coral}
           onPress={() => {
@@ -59,6 +92,21 @@ const RideWaveScreen = ({navigation}) => {
 </Card>
 </ScrollView>*/
 
+/*
+<AnimatedView>
+<ScrollView horizontal showsHorizontalScrollIndicator={false}>
+  {trail.map(({y, opacity}, idx) => (
+    <Card
+      title={events[idx].title}
+      style={styles.button}
+      animateStyle={{opacity: opacity, transform: [{translateY: y}]}}
+      image={events[idx].image}
+    />
+  ))}
+</ScrollView>
+)}
+</AnimatedView>*/
+
 const styles = StyleSheet.create({
   BackButton: {
     alignSelf: 'flex-end',
@@ -71,6 +119,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     marginLeft: 20,
     marginRight: 20,
+    marginTop: 40,
   },
   sectionTitle: {
     fontSize: 24,
@@ -83,10 +132,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '400',
     color: Colors.dark,
+    padding: 20,
   },
   eventCard: {
     width: '100%',
     height: '100%',
+    marginHorizontal: 20,
   },
 });
 

@@ -25,12 +25,12 @@ const AddLinkScreen = ({navigation}) => {
   return (
     <>
       <View style={styles.BackButton}>
-        <Button
+        {/* <Button
           title={'BACK'}
           type={BUTTON_TYPES.secondary}
           color={BUTTON_COLORS.coral}
           onPress={() => navigation.navigate('Home')}
-        />
+        /> */}
       </View>
 
       <View style={styles.container}>
@@ -58,6 +58,8 @@ const AddLinkScreen = ({navigation}) => {
               addBeacon({
                 header: 'My New Story!!!',
                 body: 'I am so hapy to be sharing!!!!',
+                mine: true,
+                type: 'NEWS',
               }),
             );
             navigation.navigate('Home');

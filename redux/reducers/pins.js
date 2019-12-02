@@ -20,6 +20,9 @@ const fakeContent = [
       x: 100,
       y: 200,
     },
+    mine: false,
+    read: false,
+    type: 'NEWS',
   },
   {
     header: 'Wave Beach',
@@ -28,6 +31,9 @@ const fakeContent = [
       x: 300,
       y: 400,
     },
+    mine: false,
+    read: false,
+    type: 'MEDIA',
   },
   {
     // fake image
@@ -37,6 +43,9 @@ const fakeContent = [
       x: 150,
       y: 250,
     },
+    mine: false,
+    read: false,
+    type: 'MEDIA',
   },
   {
     // fake link
@@ -46,6 +55,9 @@ const fakeContent = [
       x: 200,
       y: 300,
     },
+    mine: false,
+    read: true,
+    type: 'NEWS',
   },
 ];
 

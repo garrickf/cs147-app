@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
     alignItems: 'flex-start',
     marginLeft: 20,
     marginRight: 20,
@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
     // fontWeight: '700',
     color: Colors.black,
     fontFamily: 'DMSans-Bold',
+    marginLeft: 20,
   },
   sectionDescription: {
     marginTop: 8,

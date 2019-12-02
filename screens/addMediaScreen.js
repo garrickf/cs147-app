@@ -9,7 +9,7 @@ import {RNCamera} from 'react-native-camera';
 import {addBeacon} from '../redux/actions';
 
 const AddMediaScreen = ({navigation}) => {
-  dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [path, setPath] = useState(null);
 
   const takePicture = async () => {
@@ -21,24 +21,24 @@ const AddMediaScreen = ({navigation}) => {
     }
   };
 
-    return (
-      <>
-        <View style={styles.container}>
-          <RNCamera
-            ref={cam => {
-              this.camera = cam;
-            }}
-            defaultTouchToFocus
-            captureAudio={false}
-            style={styles.view}>
-            <RecordingButton
-              onPress={() => takePicture()}
-              style={styles.circleButton}></RecordingButton>
-          </RNCamera>
-        </View>
-      </>
-    );
-  };
+  return (
+    <>
+      <View style={styles.container}>
+        <RNCamera
+          ref={cam => {
+            this.camera = cam;
+          }}
+          defaultTouchToFocus
+          captureAudio={false}
+          style={styles.view}>
+          <RecordingButton
+            onPress={() => takePicture()}
+            style={styles.circleButton} />
+        </RNCamera>
+      </View>
+    </>
+  );
+};
 
 export default AddMediaScreen;
 

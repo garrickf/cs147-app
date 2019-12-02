@@ -3,10 +3,11 @@ import {createAppContainer} from 'react-navigation';
 import {createStackNavigator, HeaderBackButton} from 'react-navigation-stack';
 import addLinkScreen from './screens/addLinkScreen.js';
 import addMediaScreen from './screens/addMediaScreen.js';
+import rideWaveScreen from './screens/rideWaveScreen.js';
 import homeScreen from './screens/homeScreen.js';
 import {Provider} from 'react-redux';
 import store from './redux/store';
-import { aquaHex } from './styles.js';
+import {aquaHex} from './styles.js';
 import displayPhotoScreen from './screens/displayPhotoScreen.js';
 import viewImageScreen from './screens/viewImageScreen';
 
@@ -18,56 +19,77 @@ import {Alert} from 'react-native';
 
 const AppNavigator = createStackNavigator(
   {
-    Home: {screen: homeScreen,
-    navigationOptions: {
-      header:null,
-      headerBackTitle: ' BACK',
-    }},
-    AddLink: {screen: addLinkScreen,
+    Home: {
+      screen: homeScreen,
       navigationOptions: {
-        headerBackTitleStyle: {
-          fontFamily:'DM Sans',
-          fontWeight:'bold',
-        },
-        headerTintColor: aquaHex,
-        headerTransparent: true,
-        }
+        header: null,
+        headerBackTitle: ' BACK',
       },
-    AddMedia: {screen: addMediaScreen,
+    },
+    AddLink: {
+      screen: addLinkScreen,
       navigationOptions: {
         headerBackTitleStyle: {
-          fontFamily:'DM Sans',
-          fontWeight:'bold',
+          fontFamily: 'DM Sans',
+          fontWeight: 'bold',
         },
         headerTintColor: aquaHex,
         headerTransparent: true,
-        }},
-    DisplayPhoto: {screen: displayPhotoScreen,
+      },
+    },
+    AddMedia: {
+      screen: addMediaScreen,
+      navigationOptions: {
+        headerBackTitleStyle: {
+          fontFamily: 'DM Sans',
+          fontWeight: 'bold',
+        },
+        headerTintColor: aquaHex,
+        headerTransparent: true,
+      },
+    },
+    RideWave: {
+      screen: rideWaveScreen,
+    },
+    DisplayPhoto: {
+      screen: displayPhotoScreen,
       navigationOptions: ({navigation}) => ({
-        headerLeft: (<HeaderBackButton
-          tintColor = {aquaHex}
-          text = 'Cancel'
-          onPress={() => {
-            Alert.alert("Are you sure you want to go back?", "This image will not be saved.", [{
-              text:"No",
-              style: 'cancel'
-            },
-              {
-              text: "Yes",
-              onPress: () => navigation.goBack(null)
-            }])
-        }} />),
+        headerLeft: (
+          <HeaderBackButton
+            tintColor={aquaHex}
+            text="Cancel"
+            onPress={() => {
+              Alert.alert(
+                'Are you sure you want to go back?',
+                'This image will not be saved.',
+                [
+                  {
+                    text: 'No',
+                    style: 'cancel',
+                  },
+                  {
+                    text: 'Yes',
+                    onPress: () => navigation.goBack(null),
+                  },
+                ],
+              );
+            }}
+          />
+        ),
         headerTransparent: true,
-        })},
-    ViewImage: {screen: viewImageScreen,
+      }),
+    },
+    ViewImage: {
+      screen: viewImageScreen,
       navigationOptions: {
         headerBackTitleStyle: {
-          fontFamily:'DM Sans',
-          fontWeight:'bold',
+          fontFamily: 'DM Sans',
+          fontWeight: 'bold',
         },
         headerTintColor: aquaHex,
         headerTransparent: true,
-        }},
+      },
+    },
   },
   {
     initialRouteName: 'Home',
@@ -78,7 +100,6 @@ const AppNavigator = createStackNavigator(
     }),
   },
 );
-
 
 const Container = createAppContainer(AppNavigator);
 

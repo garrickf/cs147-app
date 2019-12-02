@@ -19,12 +19,12 @@ import {aquaHex, effects, grayHex, whiteHex} from '../styles';
 import {useSpring, animated, useTrail} from 'react-spring';
 import {getPressurePercent} from '../redux/selectors';
 import pressure from '../redux/reducers/pressure';
-import { addPressure } from '../redux/actions';
+import {addPressure} from '../redux/actions';
 
 const AnimatedView = animated(View);
 const AnimatedBar = animated(Bar);
 
-export default () => {
+export default ({navigation}) => {
   const [active, setActive] = useState(false);
   const [prevPercent, setPrevPercent] = useState(0);
   const percent = useSelector(getPressurePercent);
@@ -53,6 +53,7 @@ export default () => {
   };
 
   const buttons = [
+    {title: 'Ride Wave', image: require('../assets/images/topic.png')},
     {title: 'Change Topic', image: require('../assets/images/topic.png')},
     {title: 'Help', image: require('../assets/images/topic.png')},
     {title: 'Account', image: require('../assets/images/topic.png')},
@@ -92,7 +93,10 @@ export default () => {
       </View>
 
       <View style={styles.barAnchor}>
-        <AnimatedBar width={barProps.p.interpolate((p) => (p / 100) * FULL_WIDTH)} fill={aquaHex} />
+        <AnimatedBar
+          width={barProps.p.interpolate(p => (p / 100) * FULL_WIDTH)}
+          fill={aquaHex}
+        />
       </View>
 
       <AnimatedView style={{height: props.height, paddingTop: props.padding}}>
@@ -107,6 +111,9 @@ export default () => {
                 style={styles.button}
                 animateStyle={{opacity: opacity, transform: [{translateY: y}]}}
                 image={buttons[idx].image}
+                onPress={() => {
+                  navigation.navigate('RideWave');
+                }}
               />
             ))}
           </ScrollView>

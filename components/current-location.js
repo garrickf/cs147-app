@@ -1,17 +1,16 @@
 import React from 'react';
-import { View, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {aquaHex, whiteHex, effects} from '../styles';
 
 const Current = () => {
   return (
-      <View style = {styles.particle}>
+    <View style={styles.particle}>
       <View style={styles.nucleus} />
-      </View>
-
+    </View>
   );
 };
 
-export default Current; 
+export default Current;
 
 const styles = StyleSheet.create({
   particle: {
@@ -19,8 +18,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: 26,
     height: 26,
-    top: 550,
-    left: 200,
+    top: 605,
+    left: 195,
     borderRadius: 13,
     backgroundColor: whiteHex,
     position: 'absolute',

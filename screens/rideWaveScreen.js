@@ -12,9 +12,8 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import Button, {BUTTON_TYPES, BUTTON_COLORS} from '../components/core/button';
-import Card from '../components/core/card';
 import ActionBar from '../components/core/action-bar';
-import LinkCard from '../components/add-link';
+import EventButton from '../components/core/event-button';
 
 const AnimatedView = animated(View);
 
@@ -23,15 +22,16 @@ const RideWaveScreen = ({navigation}) => {
 
   const events = [
     {
-      title: 'Climate Change Rally',
+      header: 'Climate Change Rally',
+      description: 'hello',
       image: require('../assets/images/rally.png'),
     },
     {
-      title: 'WWF Beach Clean-up',
+      header: 'WWF Beach Clean-up',
       image: require('../assets/images/beachcleanup.png'),
     },
     {
-      title: 'Join a Green Book Club',
+      header: 'Join a Green Book Club',
       image: require('../assets/images/bookclub.png'),
     },
   ];
@@ -40,7 +40,7 @@ const RideWaveScreen = ({navigation}) => {
     y: 30,
     opacity: 0,
     from: {y: 30, opacity: 0},
-    config: {tension: 300, friction: 25},
+    config: {tension: 200, friction: 5},
   });
 
   return (
@@ -58,26 +58,16 @@ const RideWaveScreen = ({navigation}) => {
       <ScrollView
         horizontal
         pagingEnabled
-        showsHorizontalScrollIndicator={false}>
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{paddingHorizontal: 10, paddingTop: 5}}>
         {trail.map(({y, opacity}, idx) => (
-          <Card
-            title={events[idx].title}
-            style={styles.eventCard}
+          <EventButton
+            header={events[idx].header}
+            description={events[idx].description}
             image={events[idx].image}
           />
         ))}
       </ScrollView>
-
-      <View style={styles.BackButton}>
-        <Button
-          title={'NOT FEELING WAVY'}
-          type={BUTTON_TYPES.secondary}
-          color={BUTTON_COLORS.coral}
-          onPress={() => {
-            navigation.navigate('Home');
-          }}
-        />
-      </View>
     </>
   );
 };
@@ -93,6 +83,19 @@ const RideWaveScreen = ({navigation}) => {
 </ScrollView>*/
 
 /*
+
+      <View style={styles.BackButton}>
+        <Button
+          title={'NOT FEELING WAVY'}
+          type={BUTTON_TYPES.secondary}
+          color={BUTTON_COLORS.coral}
+          onPress={() => {
+            navigation.navigate('Home');
+          }}
+        />
+      </View>
+
+
 <AnimatedView>
 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
   {trail.map(({y, opacity}, idx) => (
@@ -112,22 +115,26 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     marginBottom: 60,
     marginRight: 20,
+    marginTop: 20,
   },
   container: {
-    flex: 1,
+    flex: 0,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     marginLeft: 20,
     marginRight: 20,
     marginTop: 40,
   },
+
+
   sectionTitle: {
     fontSize: 24,
-    // fontWeight: '700',
+    fontWeight: '700',
     color: Colors.black,
     fontFamily: 'DMSans-Bold',
     marginLeft: 20,
   },
+
   sectionDescription: {
     marginTop: 8,
     fontSize: 18,
@@ -136,8 +143,6 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   eventCard: {
-    width: '100%',
-    height: '100%',
     marginHorizontal: 20,
   },
 });

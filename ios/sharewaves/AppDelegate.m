@@ -12,11 +12,12 @@
 #import <React/RCTRootView.h>
 #import <GoogleMaps/GoogleMaps.h>
 
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  [GMSServices provideAPIKey:@"SECRET_KEY"]; // TODO: insert secret API key
+  [GMSServices provideAPIKey:@"AIzaSyAHA3-NPu6sXM2g1qsUnRac39vqhftqCNE"]; // TODO: insert secret API key
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"sharewaves"

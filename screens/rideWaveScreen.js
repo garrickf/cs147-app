@@ -24,14 +24,17 @@ const RideWaveScreen = ({navigation}) => {
     {
       header: 'Climate Change Rally',
       description: 'hello',
+      screen: 'Rally',
       image: require('../assets/images/rally.png'),
     },
     {
       header: 'WWF Beach Clean-up',
+      screen: 'BeachClean',
       image: require('../assets/images/beachcleanup.png'),
     },
     {
       header: 'Join a Green Book Club',
+      screen: 'BookClub',
       image: require('../assets/images/bookclub.png'),
     },
   ];
@@ -65,50 +68,16 @@ const RideWaveScreen = ({navigation}) => {
             header={events[idx].header}
             description={events[idx].description}
             image={events[idx].image}
+            style={styles.eventCard}
+            onPress={() => {
+              navigation.navigate(events[idx].screen);
+            }}
           />
         ))}
       </ScrollView>
     </>
   );
 };
-/*
-<ScrollView horizontal pagingEnabled>
-<Card>
-  <ImageBackground
-    styles={styles.eventCard}
-    source={require('../assets/images/wave1.png')}>
-    <Text>Hi I am a card</Text>
-  </ImageBackground>
-</Card>
-</ScrollView>*/
-
-/*
-
-      <View style={styles.BackButton}>
-        <Button
-          title={'NOT FEELING WAVY'}
-          type={BUTTON_TYPES.secondary}
-          color={BUTTON_COLORS.coral}
-          onPress={() => {
-            navigation.navigate('Home');
-          }}
-        />
-      </View>
-
-
-<AnimatedView>
-<ScrollView horizontal showsHorizontalScrollIndicator={false}>
-  {trail.map(({y, opacity}, idx) => (
-    <Card
-      title={events[idx].title}
-      style={styles.button}
-      animateStyle={{opacity: opacity, transform: [{translateY: y}]}}
-      image={events[idx].image}
-    />
-  ))}
-</ScrollView>
-)}
-</AnimatedView>*/
 
 const styles = StyleSheet.create({
   BackButton: {
@@ -126,7 +95,6 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
 
-
   sectionTitle: {
     fontSize: 24,
     fontWeight: '700',
@@ -143,7 +111,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   eventCard: {
-    marginHorizontal: 20,
+    marginRight: 10,
   },
 });
 

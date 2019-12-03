@@ -5,6 +5,9 @@ import addLinkScreen from './screens/addLinkScreen.js';
 import addMediaScreen from './screens/addMediaScreen.js';
 import rideWaveScreen from './screens/rideWaveScreen.js';
 import homeScreen from './screens/homeScreen.js';
+import beachCleanScreen from './screens/beachClean.js';
+import bookClubScreen from './screens/bookClub.js';
+import rallyScreen from './screens/rally.js';
 import {Provider} from 'react-redux';
 import store from './redux/store';
 import {aquaHex} from './styles.js';
@@ -50,6 +53,15 @@ const AppNavigator = createStackNavigator(
     },
     RideWave: {
       screen: rideWaveScreen,
+    },
+    BeachClean: {
+      screen: beachCleanScreen,
+    },
+    Rally: {
+      screen: rallyScreen,
+    },
+    BookClub: {
+      screen: bookClubScreen,
     },
     DisplayPhoto: {
       screen: displayPhotoScreen,

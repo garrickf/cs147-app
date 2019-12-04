@@ -37,10 +37,15 @@ const RideWaveScreen = ({navigation}) => {
       <View style={styles.container}>
         <Header>🌊 Ride the Wave!</Header>
         <Text style={styles.paragraph}>
-          People in your area are rushing to take action on environmentalism.
+          People in your area are rushing to take action on{' '}
+          <Text style={{textDecorationLine: 'underline'}}>
+            environmentalism
+          </Text>
+          .
         </Text>
         <Text style={styles.paragraph}>
-          Swipe to explore how you can ride the wave!
+          Swipe to explore how <Text style={{fontWeight: 'bold'}}>you </Text>
+          can ride the wave!
         </Text>
       </View>
 
@@ -68,12 +73,6 @@ const RideWaveScreen = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
-  BackButton: {
-    alignSelf: 'flex-end',
-    marginBottom: 60,
-    marginRight: 20,
-    marginTop: 20,
-  },
   container: {
     flex: 0,
     justifyContent: 'flex-start',

@@ -53,15 +53,48 @@ const AppNavigator = createStackNavigator(
     },
     RideWave: {
       screen: rideWaveScreen,
+      navigationOptions: {
+        headerBackTitle: ' BACK',
+      },
     },
     BeachClean: {
       screen: beachCleanScreen,
+      navigationOptions: {
+        headerBackTitleStyle: {
+          fontFamily: 'DM Sans',
+          fontWeight: 'bold',
+        },
+        headerTintColor: aquaHex,
+        headerStyle: {
+          borderBottomWidth:0,
+        },
+      },
     },
     Rally: {
       screen: rallyScreen,
+      navigationOptions: {
+        headerBackTitleStyle: {
+          fontFamily: 'DM Sans',
+          fontWeight: 'bold',
+        },
+        headerTintColor: aquaHex,
+        headerStyle: {
+          borderBottomWidth:0,
+        },
+      },
     },
     BookClub: {
       screen: bookClubScreen,
+      navigationOptions: {
+        headerBackTitleStyle: {
+          fontFamily: 'DM Sans',
+          fontWeight: 'bold',
+        },
+        headerTintColor: aquaHex,
+        headerStyle: {
+          borderBottomWidth:0,
+        },
+      },
     },
     DisplayPhoto: {
       screen: displayPhotoScreen,

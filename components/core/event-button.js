@@ -1,11 +1,18 @@
 import React from 'react';
-import {TouchableOpacity, View, Image, StyleSheet} from 'react-native';
+import {
+  Dimensions,
+  TouchableOpacity,
+  View,
+  Image,
+  StyleSheet,
+} from 'react-native';
 import Text from './text';
 import {animated} from 'react-spring';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {effects} from '../../styles';
 
 const AnimatedView = animated(View);
+const pad = 10;
 
 export default ({image, style, animateStyle, onPress, header}) => {
   // Component
@@ -31,22 +38,22 @@ export default ({image, style, animateStyle, onPress, header}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '40%',
   },
   animatedContainer: {
     alignItems: 'center',
   },
   eventButtonDefault: {
-    //width: 400,
-    height: '90%',
+    height: '80%',
     borderRadius: 10,
     //justifyContent: 'center',
     alignItems: 'center',
     ...effects.dropShadow,
   },
   icon: {
-    //width: '100%',
-    height: '70%',
+    width: Dimensions.get('window').width - 2 * pad,
+    height: '90%',
+    borderBottomRightRadius: 10,
+    borderBottomLeftRadius: 10,
   },
 
   headerText: {

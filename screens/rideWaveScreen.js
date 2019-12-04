@@ -62,7 +62,7 @@ const RideWaveScreen = ({navigation}) => {
         horizontal
         pagingEnabled
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{paddingHorizontal: 10, paddingTop: 5}}>
+        contentContainerStyle={{paddingTop: 5}}>
         {trail.map(({y, opacity}, idx) => (
           <EventButton
             header={events[idx].header}
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   eventCard: {
-    marginRight: 10,
+    paddingHorizontal: 10,
   },
 });
 

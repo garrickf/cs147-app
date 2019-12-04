@@ -1,14 +1,16 @@
 import React from 'react';
-import {View, StyleSheet, TouchableWithoutFeedback, Linking} from 'react-native';
+import {View, StyleSheet, TouchableWithoutFeedback, Linking, Image} from 'react-native';
 import {useSpring, animated} from 'react-spring';
 import Card from './core/card';
 import Text from './core/text';
 
 import {useSelector, useDispatch} from 'react-redux';
-import {getModalHeader, getModalBody, getModalActive, getModalType} from '../redux/selectors';
+import {getModalHeader, getModalBody, getModalActive, getModalType, getModalContent} from '../redux/selectors';
 import Button, {BUTTON_TYPES, BUTTON_COLORS} from './core/button';
 import ActionBar from './core/action-bar';
 import {toggleModal} from '../redux/actions';
+import NewsModal from './news-modal';
+import {effects, grayHex} from '../styles';
 
 const AnimatedView = animated(View);
 
@@ -17,6 +19,7 @@ export default ({navigation}) => {
   const body = useSelector(getModalBody);
   const active = useSelector(getModalActive);
   const type = useSelector(getModalType);
+  const story = useSelector(getModalContent);
 
   // See toast for the original clode...
   const props = useSpring({
@@ -43,20 +46,35 @@ export default ({navigation}) => {
 
   const viewContent = () => { 
     if(type === 'NEWS') {
-      Linking.openURL('https://www.bbc.com/news/world-latin-america-49971563').catch(err =>
+      Linking.openURL(story[0]).catch(err =>
       console.error('An error occurred', err),
     );
     }
     else{
       navigation.navigate('ViewImage', {
-        path: require('../assets/images/beach_cleanup.jpg')
+        path: story[0]
       });
       }
   }
 
   viewReadButton = <Button title={'View'} onPress={viewContent} />
-  if (type === 'NEW') {
+  if (type === 'NEWS') {
     viewReadButton = <Button title={'Read'} onPress={viewContent} />
+  }
+
+  ImagePreview = <View style = {styles.emptyView}/>
+  if (type == 'MEDIA') {
+    ImagePreview = <Image style = {styles.preview} resizeMode = "cover" source ={story[0]}/> 
+  }
+
+  NewsPreview = <View style = {styles.emptyView} /> 
+  if (type == 'NEWS') {
+    NewsPreview = <View style = {styles.emptyView}>
+      <NewsModal 
+        style = {styles.icon} 
+        source = {story[1]}
+      />
+    </View>
   }
 
   // Note: box-none means view cannot be target of touch events, but its subviews can be.
@@ -75,10 +93,12 @@ export default ({navigation}) => {
           transform: [{translateY: props.y}],
         }}
         pointerEvents="box-none">
+        {NewsPreview}
         <Card header={header} style={{...styles.modal}}>
           <Text>{body}</Text>
-
+          {ImagePreview}
           <ActionBar>
+            <Text style = {{fontSize: 12, alignSelf: 'center', color: grayHex}}> Shared by anonymous fish </Text>
             <Button
               title={'Back'}
               type={BUTTON_TYPES.secondary}
@@ -94,6 +114,21 @@ export default ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
+  icon:{
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-start',
+    marginLeft: 10,
+  },
+  emptyView: {
+    flex: 0,
+  },
+  preview: {
+      width: '100%',
+      height: 180,  
+  },
   backingCard: {
     // Styles the backing card which covers the entire screen and can be touched
     // to close the modal.

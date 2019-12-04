@@ -112,15 +112,19 @@ const HomeScreen = ({navigation}) => {
               navigation={navigation}
             />
             <Current />
-            {beacons.map(({header, body, location, mine, read, type}) => (
-              <Beacon
-                content={{header, body}}
-                location={location}
-                type={type}
-                viewed={read}
-                mine={mine}
-              />
-            ))}
+            {beacons.map(
+              ({header, body, location, mine, read, type, story}, idx) => (
+                <Beacon
+                  key={idx}
+                  content={{header, body}}
+                  location={location}
+                  type={type}
+                  viewed={read}
+                  mine={mine}
+                  story={story}
+                />
+              ),
+            )}
 
             <PressureBar navigation={navigation} />
 

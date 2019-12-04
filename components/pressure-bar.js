@@ -17,9 +17,8 @@ import Logo from '../assets/images/logo.svg';
 
 import {aquaHex, effects, grayHex, whiteHex} from '../styles';
 import {useSpring, animated, useTrail} from 'react-spring';
-import {getPressurePercent} from '../redux/selectors';
-import pressure from '../redux/reducers/pressure';
-import {addPressure} from '../redux/actions';
+import {getPressurePercent, getPressureVisible} from '../redux/selectors';
+import {markPressureVisible} from '../redux/actions';
 
 const AnimatedView = animated(View);
 const AnimatedBar = animated(Bar);
@@ -28,11 +27,14 @@ export default ({navigation}) => {
   const [active, setActive] = useState(false);
   const [prevPercent, setPrevPercent] = useState(0);
   const percent = useSelector(getPressurePercent);
+  const visible = useSelector(getPressureVisible);
 
   // Keep track of the previous percent
   useEffect(() => {
-    setPrevPercent(percent);
-  }, [percent]);
+    if (visible) {
+      setPrevPercent(percent);
+    }
+  }, [percent, visible]);
 
   const FULL_WIDTH = 370;
 
@@ -129,6 +131,8 @@ export default ({navigation}) => {
                 imageSize={buttons[idx].imageSize}
                 width={buttons[idx].width}
                 onPress={() => {
+                  dispatch(markPressureVisible(false)); // Since navigating away
+                  setActive(false);
                   navigation.navigate('RideWave');
                 }}
               />

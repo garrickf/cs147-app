@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {TouchableOpacity, View, Image, StyleSheet} from 'react-native';
 import {useSpring, animated} from 'react-spring';
 import {aquaHex, coralHex} from '../styles';
 import CircleButton from './core/circle-button';
+import {markPressureVisible} from '../redux/actions';
 
 const AnimatedView = animated(View);
 
@@ -38,15 +40,16 @@ export default ({navigation}) => {
     setToggle(!toggled);
   };
 
-  const handleSecondaryPress = modality => {
-    setToastMessage(`Shared ${modality} story.`);
-    setToggle(false);
-  };
+  const dispatch = useDispatch();
 
   const buttonBar = (
     <>
       <CircleButton
-        onPress={() => navigation.navigate('AddMedia')}
+        onPress={() => {
+          dispatch(markPressureVisible(false));
+          setToggle(false);
+          navigation.navigate('AddMedia');
+        }}
         // onPress={() => handleSecondaryPress('media')}
         style={{
           ...styles.mediaButton,
@@ -59,7 +62,11 @@ export default ({navigation}) => {
         image={require('../assets/images/camera.png')}
       />
       <CircleButton
-        onPress={() => navigation.navigate('AddLink')}
+        onPress={() => {
+          dispatch(markPressureVisible(false));
+          setToggle(false);
+          navigation.navigate('AddLink');
+        }}
         // onPress={() => handleSecondaryPress('news')}
         style={{
           ...styles.newsButton,

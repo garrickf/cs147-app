@@ -9,6 +9,7 @@ export const getModalContent = store => store.modal.story;
 export const getPressurePercent = store => store.pressure.percent;
 export const getPressureFilled = store => store.pressure.filled;
 export const getPressureLog = store => store.pressure.recentActions;
+export const getPressureVisible = store => store.pressure.visible;
 
 // Beacon selectors
 export const getBeacons = store => store.beacons.beacons;

@@ -20,7 +20,7 @@ import {
 } from '../redux/selectors';
 import Button, {BUTTON_TYPES, BUTTON_COLORS} from './core/button';
 import ActionBar from './core/action-bar';
-import {toggleModal, addPressure} from '../redux/actions';
+import {toggleModal, addPressure, markPressureVisible} from '../redux/actions';
 import NewsModal from './news-modal';
 import {grayHex} from '../styles';
 
@@ -61,12 +61,18 @@ export default ({navigation}) => {
       Linking.openURL(story[0]).catch(err =>
         console.error('An error occurred', err),
       );
-      dispatch(addPressure(10, 'Read a story.'));
+      setTimeout(() => {
+        dispatch(markPressureVisible(false)); // Navigating away
+        dispatch(addPressure(20, 'Read a story.'));
+      }, 1000);
     } else {
       navigation.navigate('ViewImage', {
         path: story[0],
       });
-      dispatch(addPressure(10, 'Viewed an image.'));
+      dispatch(markPressureVisible(false)); // Navigating away
+      setTimeout(() => {
+        dispatch(addPressure(10, 'Viewed an image.'));
+      }, 1000);
     }
   };
 

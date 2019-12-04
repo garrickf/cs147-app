@@ -43,6 +43,8 @@ target 'sharewaves' do
   pod 'GoogleMaps'
   pod 'Google-Maps-iOS-Utils'
 
+  pod 'react-native-config', :path => '../node_modules/react-native-config'
+
   target 'sharewavesTests' do
     inherit! :search_paths
     # Pods for testing

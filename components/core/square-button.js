@@ -5,7 +5,15 @@ import {aquaHex} from '../../styles';
 import {animated} from 'react-spring';
 const AnimatedView = animated(View);
 
-export default ({image, style, animateStyle, onPress, title}) => {
+export default ({
+  image,
+  style,
+  animateStyle,
+  onPress,
+  title,
+  imageSize,
+  width,
+}) => {
   // Component
   return (
     <TouchableOpacity
@@ -17,8 +25,11 @@ export default ({image, style, animateStyle, onPress, title}) => {
           ...styles.animatedContainer,
           ...animateStyle,
         }}>
-        <View style={styles.squareButtonDefault}>
-          <Image style={styles.icon} source={image} />
+        <View style={{...styles.squareButtonDefault, width: width}}>
+          <Image
+            style={{...styles.icon, width: imageSize, height: imageSize}}
+            source={image}
+          />
         </View>
         <Text style={styles.titleText}>{title}</Text>
       </AnimatedView>

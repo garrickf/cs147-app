@@ -1,56 +1,45 @@
 import React from 'react';
-import {StyleSheet, ScrollView, Text, View} from 'react-native';
-import {useDispatch} from 'react-redux';
-import {useSpring, animated, useTrail} from 'react-spring';
+import {StyleSheet, ScrollView, View} from 'react-native';
+import Text from '../components/core/text';
+import Header from '../components/core/header';
+import {useTrail} from 'react-spring';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-import Button, {BUTTON_TYPES, BUTTON_COLORS} from '../components/core/button';
-import Card from '../components/core/card';
-import ActionBar from '../components/core/action-bar';
-import LinkCard from '../components/add-link';
-
-const AnimatedView = animated(View);
+import EventButton from '../components/core/event-button';
 
 const RideWaveScreen = ({navigation}) => {
-  const dispatch = useDispatch();
-
   const events = [
     {
-      title: 'Climate Change Rally',
+      header: 'Climate Change Rally',
+      description: 'hello',
+      screen: 'Rally',
       image: require('../assets/images/rally.png'),
     },
     {
-      title: 'WWF Beach Clean-up',
+      header: 'WWF Beach Clean-up',
+      screen: 'BeachClean',
       image: require('../assets/images/beachcleanup.png'),
     },
     {
-      title: 'Join a Green Book Club',
+      header: 'Join a Green Book Club',
+      screen: 'BookClub',
       image: require('../assets/images/bookclub.png'),
     },
   ];
 
   const trail = useTrail(events.length, {
-    y: 30,
-    opacity: 0,
-    from: {y: 30, opacity: 0},
-    config: {tension: 300, friction: 25},
+    to: {x: 0, opacity: 1},
+    from: {x: 30, opacity: 0},
+    config: {tension: 100, friction: 10},
   });
 
   return (
     <>
       <View style={styles.container}>
-        <Text style={styles.sectionTitle}>🌊 Ride the Wave!</Text>
-        <Text style={styles.sectionDescription}>
+        <Header>🌊 Ride the Wave!</Header>
+        <Text style={styles.paragraph}>
           People in your area are rushing to take action on environmentalism.
         </Text>
-        <Text style={styles.sectionDescription}>
+        <Text style={styles.paragraph}>
           Swipe to explore how you can ride the wave!
         </Text>
       </View>
@@ -58,87 +47,46 @@ const RideWaveScreen = ({navigation}) => {
       <ScrollView
         horizontal
         pagingEnabled
-        showsHorizontalScrollIndicator={false}>
-        {trail.map(({y, opacity}, idx) => (
-          <Card
-            title={events[idx].title}
-            style={styles.eventCard}
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{paddingTop: 5}}>
+        {trail.map(({x, opacity}, idx) => (
+          <EventButton
+            key={idx}
+            header={events[idx].header}
+            description={events[idx].description}
             image={events[idx].image}
+            style={styles.eventCard}
+            onPress={() => {
+              navigation.navigate(events[idx].screen);
+            }}
+            animateStyle={{opacity: opacity, transform: [{translateX: x}]}}
           />
         ))}
       </ScrollView>
-
-      <View style={styles.BackButton}>
-        <Button
-          title={'NOT FEELING WAVY'}
-          type={BUTTON_TYPES.secondary}
-          color={BUTTON_COLORS.coral}
-          onPress={() => {
-            navigation.navigate('Home');
-          }}
-        />
-      </View>
     </>
   );
 };
-/*
-<ScrollView horizontal pagingEnabled>
-<Card>
-  <ImageBackground
-    styles={styles.eventCard}
-    source={require('../assets/images/wave1.png')}>
-    <Text>Hi I am a card</Text>
-  </ImageBackground>
-</Card>
-</ScrollView>*/
-
-/*
-<AnimatedView>
-<ScrollView horizontal showsHorizontalScrollIndicator={false}>
-  {trail.map(({y, opacity}, idx) => (
-    <Card
-      title={events[idx].title}
-      style={styles.button}
-      animateStyle={{opacity: opacity, transform: [{translateY: y}]}}
-      image={events[idx].image}
-    />
-  ))}
-</ScrollView>
-)}
-</AnimatedView>*/
 
 const styles = StyleSheet.create({
   BackButton: {
     alignSelf: 'flex-end',
     marginBottom: 60,
     marginRight: 20,
+    marginTop: 20,
   },
   container: {
-    flex: 1,
+    flex: 0,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     marginLeft: 20,
     marginRight: 20,
     marginTop: 40,
   },
-  sectionTitle: {
-    fontSize: 24,
-    // fontWeight: '700',
-    color: Colors.black,
-    fontFamily: 'DMSans-Bold',
-    marginLeft: 20,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-    padding: 20,
+  paragraph: {
+    paddingBottom: 10,
   },
   eventCard: {
-    width: '100%',
-    height: '100%',
-    marginHorizontal: 20,
+    paddingHorizontal: 10,
   },
 });
 

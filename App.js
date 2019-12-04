@@ -54,7 +54,15 @@ const AppNavigator = createStackNavigator(
     RideWave: {
       screen: rideWaveScreen,
       navigationOptions: {
+        headerBackTitleStyle: {
+          fontFamily: 'DM Sans',
+          fontWeight: 'bold',
+        },
         headerBackTitle: ' BACK',
+        headerTintColor: aquaHex,
+        headerStyle: {
+          borderBottomWidth: 0,
+        },
       },
     },
     BeachClean: {
@@ -66,7 +74,7 @@ const AppNavigator = createStackNavigator(
         },
         headerTintColor: aquaHex,
         headerStyle: {
-          borderBottomWidth:0,
+          borderBottomWidth: 0,
         },
       },
     },
@@ -79,7 +87,7 @@ const AppNavigator = createStackNavigator(
         },
         headerTintColor: aquaHex,
         headerStyle: {
-          borderBottomWidth:0,
+          borderBottomWidth: 0,
         },
       },
     },
@@ -92,7 +100,7 @@ const AppNavigator = createStackNavigator(
         },
         headerTintColor: aquaHex,
         headerStyle: {
-          borderBottomWidth:0,
+          borderBottomWidth: 0,
         },
       },
     },

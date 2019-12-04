@@ -7,6 +7,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import Text from './text';
+import Header from './header';
 import {animated} from 'react-spring';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {effects} from '../../styles';
@@ -27,7 +28,7 @@ export default ({image, style, animateStyle, onPress, header}) => {
           ...animateStyle,
         }}>
         <View style={styles.eventButtonDefault}>
-          <Text style={styles.headerText}>{header}</Text>
+          <Header style={styles.headerText}>{header}</Header>
           <Image style={styles.icon} source={image} />
         </View>
       </AnimatedView>
@@ -55,16 +56,9 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 10,
     borderBottomLeftRadius: 10,
   },
-
   headerText: {
-    fontSize: 24,
-    fontWeight: '700',
-    color: Colors.black,
-    fontFamily: 'DMSans-Bold',
-    paddingTop: 20,
-    paddingBottom: 20,
+    paddingTop: 18,
   },
-
   descriptionText: {
     marginTop: 8,
     fontSize: 18,

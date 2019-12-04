@@ -1,24 +1,14 @@
 import React from 'react';
-import {StyleSheet, ScrollView, Text, View} from 'react-native';
-import {useDispatch} from 'react-redux';
-import {useSpring, animated, useTrail} from 'react-spring';
+import {StyleSheet, ScrollView, View} from 'react-native';
+import Text from '../components/core/text';
+import Header from '../components/core/header';
+import {animated, useTrail} from 'react-spring';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-import Button, {BUTTON_TYPES, BUTTON_COLORS} from '../components/core/button';
-import ActionBar from '../components/core/action-bar';
 import EventButton from '../components/core/event-button';
 
 const AnimatedView = animated(View);
 
 const RideWaveScreen = ({navigation}) => {
-  const dispatch = useDispatch();
 
   const events = [
     {
@@ -49,11 +39,11 @@ const RideWaveScreen = ({navigation}) => {
   return (
     <>
       <View style={styles.container}>
-        <Text style={styles.sectionTitle}>🌊 Ride the Wave!</Text>
-        <Text style={styles.sectionDescription}>
+        <Header>🌊 Ride the Wave!</Header>
+        <Text style={styles.paragraph}>
           People in your area are rushing to take action on environmentalism.
         </Text>
-        <Text style={styles.sectionDescription}>
+        <Text style={styles.paragraph}>
           Swipe to explore how you can ride the wave!
         </Text>
       </View>
@@ -94,21 +84,8 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginTop: 40,
   },
-
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '700',
-    color: Colors.black,
-    fontFamily: 'DMSans-Bold',
-    marginLeft: 20,
-  },
-
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-    padding: 20,
+  paragraph: {
+    paddingBottom: 10,
   },
   eventCard: {
     paddingHorizontal: 10,

@@ -6,7 +6,6 @@ import {
   Image,
   StyleSheet,
 } from 'react-native';
-import Text from './text';
 import Header from './header';
 import {animated} from 'react-spring';
 import {Colors} from 'react-native/Libraries/NewAppScreen';

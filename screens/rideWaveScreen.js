@@ -2,14 +2,11 @@ import React from 'react';
 import {StyleSheet, ScrollView, View} from 'react-native';
 import Text from '../components/core/text';
 import Header from '../components/core/header';
-import {animated, useTrail} from 'react-spring';
+import {useTrail} from 'react-spring';
 
 import EventButton from '../components/core/event-button';
 
-const AnimatedView = animated(View);
-
 const RideWaveScreen = ({navigation}) => {
-
   const events = [
     {
       header: 'Climate Change Rally',
@@ -30,10 +27,9 @@ const RideWaveScreen = ({navigation}) => {
   ];
 
   const trail = useTrail(events.length, {
-    y: 30,
-    opacity: 0,
-    from: {y: 30, opacity: 0},
-    config: {tension: 200, friction: 5},
+    to: {x: 0, opacity: 1},
+    from: {x: 30, opacity: 0},
+    config: {tension: 100, friction: 10},
   });
 
   return (
@@ -53,8 +49,9 @@ const RideWaveScreen = ({navigation}) => {
         pagingEnabled
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{paddingTop: 5}}>
-        {trail.map(({y, opacity}, idx) => (
+        {trail.map(({x, opacity}, idx) => (
           <EventButton
+            key={idx}
             header={events[idx].header}
             description={events[idx].description}
             image={events[idx].image}
@@ -62,6 +59,7 @@ const RideWaveScreen = ({navigation}) => {
             onPress={() => {
               navigation.navigate(events[idx].screen);
             }}
+            animateStyle={{opacity: opacity, transform: [{translateX: x}]}}
           />
         ))}
       </ScrollView>

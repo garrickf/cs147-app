@@ -39,7 +39,7 @@ export default ({navigation}) => {
   const props = useSpring({
     from: {top: -420, height: 0, padding: 0},
     to: {
-      top: active ? -60 : -420,
+      top: active ? -70 : -430,
       height: active ? 175 : 0,
       padding: active ? 20 : 0,
     },
@@ -53,11 +53,21 @@ export default ({navigation}) => {
   };
 
   const buttons = [
-    {title: 'Ride Wave', image: require('../assets/images/topic.png')},
-    {title: 'Change Topic', image: require('../assets/images/topic.png')},
-    {title: 'Help', image: require('../assets/images/topic.png')},
-    {title: 'Account', image: require('../assets/images/topic.png')},
-    {title: 'Settings', image: require('../assets/images/gear.png')},
+    {
+      title: 'Ride The Wave',
+      image: require('../assets/images/waves.png'),
+      imageSize: 90,
+      width: 185,
+    },
+    {
+      title: 'Change Topic',
+      image: require('../assets/images/topic.png'),
+      imageSize: 70,
+      width: 185,
+    },
+    // {title: 'Help', image: require('../assets/images/topic.png')},
+    // {title: 'Account', image: require('../assets/images/topic.png')},
+    // {title: 'Settings', image: require('../assets/images/gear.png')},
   ];
 
   // A trail takes a number (of springs to generate) and a description of the
@@ -104,13 +114,20 @@ export default ({navigation}) => {
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{paddingHorizontal: 10, paddingTop: 5}}>
+            contentContainerStyle={{
+              width: '100%',
+              paddingHorizontal: 10,
+              paddingTop: 5,
+            }}>
             {trail.map(({y, opacity}, idx) => (
               <SquareButton
+                key={idx}
                 title={buttons[idx].title}
                 style={styles.button}
                 animateStyle={{opacity: opacity, transform: [{translateY: y}]}}
                 image={buttons[idx].image}
+                imageSize={buttons[idx].imageSize}
+                width={buttons[idx].width}
                 onPress={() => {
                   navigation.navigate('RideWave');
                 }}
@@ -151,7 +168,7 @@ const styles = StyleSheet.create({
     ...effects.dropShadow,
     position: 'absolute',
     width: '100%',
-    height: 350,
+    height: 360,
     borderRadius: 20,
   },
   container: {

@@ -50,6 +50,16 @@ const AppNavigator = createStackNavigator(
     },
     RideWave: {
       screen: rideWaveScreen,
+      navigationOptions: {
+        headerBackTitleStyle: {
+          fontFamily: 'DM Sans',
+          fontWeight: 'bold',
+        },
+        headerTintColor: aquaHex,
+        headerStyle: {
+          borderBottomWidth: 0,
+        },
+      },
     },
     DisplayPhoto: {
       screen: displayPhotoScreen,

@@ -23,7 +23,7 @@ const fakeContent = [
     mine: false,
     read: false,
     type: 'NEWS',
-    // contentPath: 'https://www.bbc.com/news/world-latin-america-49971563',
+    story: ['https://www.bbc.com/news/world-latin-america-49971563', 'BBC'],
   },
   {
     header: 'Wave Beach',
@@ -35,11 +35,12 @@ const fakeContent = [
     mine: false,
     read: false,
     type: 'MEDIA',
+    story: [require('../../assets/images/beach_cleanup.jpg'), ''],
   },
   {
     // fake image
-    header: ' this is a fake image ',
-    body: 'this is a fake image ~',
+    header: ' Town Hall ',
+    body: null,
     location: {
       x: 150,
       y: 250,
@@ -47,11 +48,11 @@ const fakeContent = [
     mine: false,
     read: false,
     type: 'MEDIA',
+    story: [require('../../assets/images/environment_rally.jpeg'), ''],
   },
   {
-    // fake link
-    header: 'this is a fake link',
-    body: 'this is a fake link ~ ',
+    header: 'California banned plastic bags. So why do stores keep using them?',
+    body: 'Three years ago, California voters upheld a state law prohibiting single-use plastic grocery bags. But for all the furor...',
     location: {
       x: 200,
       y: 300,
@@ -59,6 +60,7 @@ const fakeContent = [
     mine: false,
     read: true,
     type: 'NEWS',
+    story: ['https://www.sfchronicle.com/politics/article/California-banned-plastic-bags-So-why-do-stores-14872852.php', 'SF'],
   },
 ];
 

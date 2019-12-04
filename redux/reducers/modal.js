@@ -8,6 +8,8 @@ const initialState = {
   header: 'Header',
   body: 'Body',
   active: false,
+  type: 'NEWS',
+  story: ['www.bbc.co.uk', 'BBC']
 };
 
 export default function(state = initialState, action) {
@@ -17,6 +19,8 @@ export default function(state = initialState, action) {
         ...state,
         header: action.data.header,
         body: action.data.body,
+        type: action.data.type,
+        story: action.data.story,
       };
     case TOGGLE_MODAL:
       return {

@@ -47,7 +47,7 @@ const Particle = ({style, scale, toggled}) => {
   );
 };
 
-const Beacon = ({type, location, attention, content, mine, viewed}) => {
+const Beacon = ({type, location, attention, content, mine, viewed, story}) => {
   const [toggled, setToggle] = useState(false);
   const modalActive = useSelector(getModalActive);
 
@@ -85,6 +85,7 @@ const Beacon = ({type, location, attention, content, mine, viewed}) => {
         header: content.header,
         body: content.body,
         type: type,
+        story: story,
       }),
     );
     dispatch(toggleModal());
@@ -152,6 +153,7 @@ Beacon.defaultProps = {
   mine: false,
   viewed: false,
   type: 'NEWS',
+  story: 'http://facebook.com',
 };
 
 export default Beacon;

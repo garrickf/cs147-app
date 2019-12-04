@@ -2,8 +2,10 @@ import React from 'react';
 import {Text, StyleSheet} from 'react-native';
 import {typography} from '../../styles';
 
-export default ({children}) => (
-  <Text style={{...typography.header, ...styles.header}}>{children}</Text>
+export default ({children, style}) => (
+  <Text style={{...typography.header, ...styles.header, ...style}}>
+    {children}
+  </Text>
 );
 
 const styles = StyleSheet.create({

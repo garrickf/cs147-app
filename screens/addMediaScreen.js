@@ -33,7 +33,8 @@ const AddMediaScreen = ({navigation}) => {
           style={styles.view}>
           <RecordingButton
             onPress={() => takePicture()}
-            style={styles.circleButton} />
+            style={styles.circleButton}
+          />
         </RNCamera>
       </View>
     </>

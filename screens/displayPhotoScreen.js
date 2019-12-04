@@ -1,39 +1,42 @@
-import React, {useState} from 'react';
-import {StyleSheet, Text, ImageBackground, View} from 'react-native';
-import {aquaHex, coralHex, blackHex} from '../styles';
-import Button, {BUTTON_TYPES, BUTTON_COLORS} from '../components/core/button';
+import React from 'react';
+import {useDispatch} from 'react-redux';
+import {StyleSheet, ImageBackground, View} from 'react-native';
+import {blackHex} from '../styles';
+import Button from '../components/core/button';
 
-import {addBeacon} from '../redux/actions';
+import {addBeacon, addPressure} from '../redux/actions';
 
-const displayPhoto = ({navigation}) => {
-    pathe = navigation.getParam('path', 'null');
-    return (
-      <>
-        <View style={{flex: 1}}>
-          <ImageBackground style={styles.container} source={{uri: pathe}}>
-            <View style={styles.postButton}>
-              <Button
-                title={'POST'}
-                onPress={() => {
-                  dispatch(
-                    addBeacon({
-                      header: 'My New Story!!!',
-                      body: 'I am so happy to be sharing!!!!',
-                      mine: true,
-                      type: 'MEDIA',
-                    }),
-                  );
-                  navigation.navigate('Home');
-                }}
-              />
-            </View>
-          </ImageBackground>
-        </View>
-      </>
-    );
-  };
+const DisplayPhoto = ({navigation}) => {
+  const path = navigation.getParam('path', 'null');
+  const dispatch = useDispatch();
+  return (
+    <>
+      <View style={{flex: 1}}>
+        <ImageBackground style={styles.container} source={{uri: path}}>
+          <View style={styles.postButton}>
+            <Button
+              title={'POST'}
+              onPress={() => {
+                dispatch(
+                  addBeacon({
+                    header: 'My New Story!!!',
+                    body: 'I am so happy to be sharing!!!!',
+                    mine: true,
+                    type: 'MEDIA',
+                  }),
+                );
+                dispatch(addPressure(30, 'Added new photo.'));
+                navigation.navigate('Home');
+              }}
+            />
+          </View>
+        </ImageBackground>
+      </View>
+    </>
+  );
+};
 
-export default displayPhoto;
+export default DisplayPhoto;
 
 const styles = StyleSheet.create({
   postButton: {

@@ -49,7 +49,7 @@ export default ({navigation}) => {
   const dispatch = useDispatch();
   const handlePress = () => {
     setActive(!active);
-    dispatch(addPressure(5, 'I clicked a button.'));
+    // dispatch(addPressure(5, 'I clicked a button.')); // DEBUG
   };
 
   const buttons = [

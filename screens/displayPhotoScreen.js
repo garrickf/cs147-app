@@ -2,10 +2,12 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, ImageBackground, View} from 'react-native';
 import {aquaHex, coralHex, blackHex} from '../styles';
 import Button, {BUTTON_TYPES, BUTTON_COLORS} from '../components/core/button';
+import {useSelector, useDispatch} from 'react-redux';
 
 import {addBeacon} from '../redux/actions';
 
 const displayPhoto = ({navigation}) => {
+  dispatch = useDispatch(); 
     pathe = navigation.getParam('path', 'null');
     return (
       <>

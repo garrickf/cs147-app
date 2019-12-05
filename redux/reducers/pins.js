@@ -23,7 +23,8 @@ const fakeContent = [
     mine: false,
     read: false,
     type: 'NEWS',
-    story: ['https://www.bbc.com/news/world-latin-america-49971563', 'BBC'],
+    story: ['https://www.bbc.com/news/world-latin-america-49971563', 'BBC', 'fish'],
+    attention: 3,
   },
   {
     header: 'Wave Beach',
@@ -35,10 +36,10 @@ const fakeContent = [
     mine: false,
     read: false,
     type: 'MEDIA',
-    story: [require('../../assets/images/beach_cleanup.jpg'), ''],
+    story: [require('../../assets/images/beach_cleanup.jpg'), '', 'turtle'],
+    attention: 2, 
   },
   {
-    // fake image
     header: ' Town Hall ',
     body: null,
     location: {
@@ -48,7 +49,8 @@ const fakeContent = [
     mine: false,
     read: false,
     type: 'MEDIA',
-    story: [require('../../assets/images/environment_rally.jpeg'), ''],
+    story: [require('../../assets/images/environment_rally.jpeg'), 'whale'],
+    attention: 5, 
   },
   {
     header: 'California banned plastic bags. So why do stores keep using them?',
@@ -60,7 +62,8 @@ const fakeContent = [
     mine: false,
     read: true,
     type: 'NEWS',
-    story: ['https://www.sfchronicle.com/politics/article/California-banned-plastic-bags-So-why-do-stores-14872852.php', 'SF'],
+    story: ['https://www.sfchronicle.com/politics/article/California-banned-plastic-bags-So-why-do-stores-14872852.php', 'SF', 'seal'],
+    attention: 4,
   },
 ];
 

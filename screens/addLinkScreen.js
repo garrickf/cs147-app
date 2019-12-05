@@ -57,9 +57,15 @@ const AddLinkScreen = ({navigation}) => {
             dispatch(
               addBeacon({
                 header: 'My New Story!!!',
-                body: 'I am so hapy to be sharing!!!!',
+                body: 'I am so happy to be sharing!!!!',
                 mine: true,
                 type: 'NEWS',
+                location: {
+                  x: 310,
+                  y: 530,
+                },
+                attention: 0,
+                story: ['https://www.bbc.com/news/science-environment-50661448'],
               }),
             );
             navigation.navigate('Home');

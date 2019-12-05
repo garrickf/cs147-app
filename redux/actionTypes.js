@@ -9,3 +9,6 @@ export const EMPTY_LOG = '(Pressure) Empty activity log';
 
 // Add pin
 export const ADD_PIN = '(Beacon) Add a beacon to the map';
+
+// Mark pin as read
+export const UPDATE_READ = '(Beacon) Mark beacon as read';

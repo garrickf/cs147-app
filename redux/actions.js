@@ -11,6 +11,13 @@ export const updateModal = ({header, body, type, story}) => ({
   },
 });
 
+export const updateRead = ({read}) => ({
+  type: a.UPDATE_READ,
+  data: {
+    read,
+  }
+});
+
 export const toggleModal = () => ({
   type: a.TOGGLE_MODAL,
 });

@@ -21,8 +21,14 @@ const displayPhoto = ({navigation}) => {
                     addBeacon({
                       header: 'My New Story!!!',
                       body: 'I am so happy to be sharing!!!!',
+                      story: [pathe],
                       mine: true,
                       type: 'MEDIA',
+                      location: {
+                        x: 150,
+                        y: 500,
+                      },
+                      attention: 0,
                     }),
                   );
                   navigation.navigate('Home');

@@ -4,6 +4,7 @@ import {aquaHex, coralHex, blackHex} from '../styles';
 
 const viewImageScreen = ({navigation}) => {
     pathe = navigation.getParam('path', 'null');
+    console.log(pathe)
     return (
         <>
           <View style={{flex: 1}}>

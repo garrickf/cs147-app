@@ -151,7 +151,7 @@ Beacon.defaultProps = {
     body: 'Body',
   },
   mine: false,
-  viewed: false,
+  read: false,
   type: 'NEWS',
   story: 'http://facebook.com',
 };

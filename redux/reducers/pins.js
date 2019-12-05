@@ -9,7 +9,11 @@
  * - Read (boolean)
  */
 
-import {ADD_PIN} from '../actionTypes';
+import {ADD_PIN, UPDATE_READ} from '../actionTypes';
+import {getRead} from '../selectors';
+import {useSelector, useDispatch} from 'react-redux';
+
+readBool = [false, false, false, true];
 
 const fakeContent = [
   {
@@ -21,9 +25,9 @@ const fakeContent = [
       y: 200,
     },
     mine: false,
-    read: false,
+    read: readBool[0],
     type: 'NEWS',
-    story: ['https://www.bbc.com/news/world-latin-america-49971563', 'BBC', 'fish'],
+    story: ['https://www.bbc.com/news/world-latin-america-49971563', 'BBC', 'fish', 0],
     attention: 3,
   },
   {
@@ -34,9 +38,9 @@ const fakeContent = [
       y: 400,
     },
     mine: false,
-    read: false,
+    read: readBool[1],
     type: 'MEDIA',
-    story: [require('../../assets/images/beach_cleanup.jpg'), '', 'turtle'],
+    story: [require('../../assets/images/beach_cleanup.jpg'), '', 'turtle', 1],
     attention: 2, 
   },
   {
@@ -47,9 +51,9 @@ const fakeContent = [
       y: 250,
     },
     mine: false,
-    read: false,
+    read: readBool[2],
     type: 'MEDIA',
-    story: [require('../../assets/images/environment_rally.jpeg'), 'whale'],
+    story: [require('../../assets/images/environment_rally.jpeg'), 'whale', 2],
     attention: 5, 
   },
   {
@@ -60,9 +64,9 @@ const fakeContent = [
       y: 300,
     },
     mine: false,
-    read: true,
+    read: readBool[3],
     type: 'NEWS',
-    story: ['https://www.sfchronicle.com/politics/article/California-banned-plastic-bags-So-why-do-stores-14872852.php', 'SF', 'seal'],
+    story: ['https://www.sfchronicle.com/politics/article/California-banned-plastic-bags-So-why-do-stores-14872852.php', 'SF', 'seal', 3],
     attention: 4,
   },
 ];
@@ -72,16 +76,21 @@ const initialState = {
     // For now, start with fake content.
     ...fakeContent,
   ],
+  read: readBool,
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case ADD_PIN:
-      // The payload of the action is all the information required for a beacon.
       return {
         ...state,
         beacons: [...state.beacons, action.beacon],
       };
+    case UPDATE_READ:
+      return{
+        ...state,
+        read: action.data.read,
+      }
     default:
       return state;
   }

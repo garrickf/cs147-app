@@ -5,10 +5,10 @@ import Card from './core/card';
 import Text from './core/text';
 
 import {useSelector, useDispatch} from 'react-redux';
-import {getModalHeader, getModalBody, getModalActive, getModalType, getModalContent} from '../redux/selectors';
+import {getModalHeader, getModalBody, getModalActive, getModalType, getModalContent, getRead} from '../redux/selectors';
 import Button, {BUTTON_TYPES, BUTTON_COLORS} from './core/button';
 import ActionBar from './core/action-bar';
-import {toggleModal} from '../redux/actions';
+import {toggleModal, updateRead} from '../redux/actions';
 import NewsModal from './news-modal';
 import {effects, grayHex} from '../styles';
 
@@ -20,6 +20,7 @@ export default ({navigation}) => {
   const active = useSelector(getModalActive);
   const type = useSelector(getModalType);
   const story = useSelector(getModalContent);
+  const curr_read = useSelector(getRead);
 
   // See toast for the original clode...
   const props = useSpring({
@@ -44,7 +45,15 @@ export default ({navigation}) => {
     dispatch(toggleModal());
   };
 
-  const viewContent = () => { 
+  const viewContent = () => {
+    // number_story = story[3];
+    // curr_read[number_story]=true;
+    // updated_read = curr_read; 
+    // dispatch(
+    //   getRead({
+    //     read: updated_read,
+    //   }),
+    // );
     if(type === 'NEWS') {
       Linking.openURL(story[0]).catch(err =>
       console.error('An error occurred', err),

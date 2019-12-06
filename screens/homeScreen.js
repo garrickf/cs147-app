@@ -21,7 +21,12 @@ import Toast from '../components/core/toast';
 import Beacon from '../components/beacon';
 import Modal from '../components/modal';
 import PressureBar from '../components/pressure-bar';
-import {getBeacons, getPressureLogMostRecent, getPressureLogSize, getPressureFilled} from '../redux/selectors';
+import {
+  getBeacons,
+  getPressureLogMostRecent,
+  getPressureLogSize,
+  getPressureFilled,
+} from '../redux/selectors';
 import {markPressureVisible} from '../redux/actions';
 
 const HomeScreen = ({navigation}) => {

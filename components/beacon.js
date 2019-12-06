@@ -47,7 +47,16 @@ const Particle = ({style, scale, toggled}) => {
   );
 };
 
-const Beacon = ({type, location, attention, content, mine, viewed, story}) => {
+const Beacon = ({
+  type,
+  location,
+  attention,
+  content,
+  mine,
+  read,
+  story,
+  idx,
+}) => {
   const [toggled, setToggle] = useState(false);
   const modalActive = useSelector(getModalActive);
 
@@ -60,8 +69,8 @@ const Beacon = ({type, location, attention, content, mine, viewed, story}) => {
 
   // Set the initial props for how the beacon gets scaled.
   const props = useSpring({
-    scale: toggled ? 0.6 : viewed ? 0.15 : 0.3,
-    from: {scale: viewed ? 0.15 : 0.3},
+    scale: toggled ? 0.6 : read ? 0.2 : 0.3,
+    from: {scale: read ? 0.2 : 0.3},
     config: {tension: 200},
   });
 
@@ -86,6 +95,7 @@ const Beacon = ({type, location, attention, content, mine, viewed, story}) => {
         body: content.body,
         type: type,
         story: story,
+        idx: idx,
       }),
     );
     dispatch(toggleModal());
@@ -151,7 +161,7 @@ Beacon.defaultProps = {
     body: 'Body',
   },
   mine: false,
-  viewed: false,
+  read: false,
   type: 'NEWS',
   story: 'http://facebook.com',
 };

@@ -1,14 +1,14 @@
 import * as a from './actionTypes';
 
 // Modal actions
-export const updateModal = ({header, body, type, story}) => ({
+export const updateModal = data => ({
   type: a.UPDATE_MODAL,
-  data: {
-    header,
-    body,
-    type,
-    story,
-  },
+  data: data,
+});
+
+export const updateRead = index => ({
+  type: a.UPDATE_READ,
+  idx: index,
 });
 
 export const toggleModal = () => ({

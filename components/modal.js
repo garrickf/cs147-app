@@ -17,10 +17,11 @@ import {
   getModalActive,
   getModalType,
   getModalContent,
+  getModalPayload,
 } from '../redux/selectors';
 import Button, {BUTTON_TYPES, BUTTON_COLORS} from './core/button';
 import ActionBar from './core/action-bar';
-import {toggleModal, addPressure, markPressureVisible} from '../redux/actions';
+import {toggleModal, addPressure, markPressureVisible, updateRead} from '../redux/actions';
 import NewsModal from './news-modal';
 import {grayHex} from '../styles';
 
@@ -32,6 +33,7 @@ export default ({navigation}) => {
   const active = useSelector(getModalActive);
   const type = useSelector(getModalType);
   const story = useSelector(getModalContent);
+  const {idx} = useSelector(getModalPayload);
 
   // See toast for the original clode...
   const props = useSpring({
@@ -57,6 +59,7 @@ export default ({navigation}) => {
   };
 
   const viewContent = () => {
+    dispatch(updateRead(idx));
     if (type === 'NEWS') {
       Linking.openURL(story[0]).catch(err =>
         console.error('An error occurred', err),
@@ -96,7 +99,7 @@ export default ({navigation}) => {
       </View>
     );
   }
-
+  const animal = story[2];
   // Note: box-none means view cannot be target of touch events, but its subviews can be.
   return (
     <>
@@ -118,9 +121,9 @@ export default ({navigation}) => {
           <Text>{body}</Text>
           {ImagePreview}
           <ActionBar>
-            <Text style={{fontSize: 12, alignSelf: 'center', color: grayHex}}>
+            <Text style={{fontSize: 12, color: grayHex, textAlign: 'right'}}>
               {' '}
-              Shared by anonymous fish{' '}
+              Shared by {'\n'} anonymous {animal}{' '}
             </Text>
             <Button
               title={'Back'}

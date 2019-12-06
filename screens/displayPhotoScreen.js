@@ -7,8 +7,8 @@ import Button from '../components/core/button';
 import {addBeacon, addPressure} from '../redux/actions';
 
 const DisplayPhoto = ({navigation}) => {
-  const path = navigation.getParam('path', 'null');
   const dispatch = useDispatch();
+  const path = navigation.getParam('path', 'null');
   return (
     <>
       <View style={{flex: 1}}>
@@ -20,9 +20,14 @@ const DisplayPhoto = ({navigation}) => {
                 dispatch(
                   addBeacon({
                     header: 'My New Story!!!',
-                    body: 'I am so happy to be sharing!!!!',
+                    story: [{uri: path}, '', 'shark'],
                     mine: true,
                     type: 'MEDIA',
+                    location: {
+                      x: 150,
+                      y: 500,
+                    },
+                    attention: 0,
                   }),
                 );
                 dispatch(addPressure(30, 'Added new photo.'));

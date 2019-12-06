@@ -9,7 +9,7 @@
  * - Read (boolean)
  */
 
-import {ADD_PIN} from '../actionTypes';
+import {ADD_PIN, UPDATE_READ} from '../actionTypes';
 
 const fakeContent = [
   {
@@ -23,7 +23,13 @@ const fakeContent = [
     mine: false,
     read: false,
     type: 'NEWS',
-    story: ['https://www.bbc.com/news/world-latin-america-49971563', 'BBC'],
+    story: [
+      'https://www.bbc.com/news/world-latin-america-49971563',
+      'BBC',
+      'fish',
+      0,
+    ],
+    attention: 3,
   },
   {
     header: 'Wave Beach',
@@ -35,10 +41,10 @@ const fakeContent = [
     mine: false,
     read: false,
     type: 'MEDIA',
-    story: [require('../../assets/images/beach_cleanup.jpg'), ''],
+    story: [require('../../assets/images/beach_cleanup.jpg'), '', 'turtle', 1],
+    attention: 2,
   },
   {
-    // fake image
     header: ' Town Hall ',
     body: null,
     location: {
@@ -48,19 +54,32 @@ const fakeContent = [
     mine: false,
     read: false,
     type: 'MEDIA',
-    story: [require('../../assets/images/environment_rally.jpeg'), ''],
+    story: [
+      require('../../assets/images/environment_rally.jpeg'),
+      '',
+      'whale',
+      2,
+    ],
+    attention: 5,
   },
   {
     header: 'California banned plastic bags. So why do stores keep using them?',
-    body: 'Three years ago, California voters upheld a state law prohibiting single-use plastic grocery bags. But for all the furor...',
+    body:
+      'Three years ago, California voters upheld a state law prohibiting single-use plastic grocery bags. But for all the furor...',
     location: {
       x: 200,
       y: 300,
     },
     mine: false,
-    read: true,
+    read: false,
     type: 'NEWS',
-    story: ['https://www.sfchronicle.com/politics/article/California-banned-plastic-bags-So-why-do-stores-14872852.php', 'SF'],
+    story: [
+      'https://www.sfchronicle.com/politics/article/California-banned-plastic-bags-So-why-do-stores-14872852.php',
+      'SF',
+      'seal',
+      3,
+    ],
+    attention: 4,
   },
 ];
 
@@ -74,11 +93,19 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case ADD_PIN:
-      // The payload of the action is all the information required for a beacon.
       return {
         ...state,
         beacons: [...state.beacons, action.beacon],
       };
+    case UPDATE_READ:
+      const newBeacons = [...state.beacons];
+      newBeacons[action.idx].read = true;
+      const newState = {
+        ...state,
+        beacons: newBeacons,
+      };
+      console.log(newState.beacons);
+      return newState;
     default:
       return state;
   }

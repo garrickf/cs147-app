@@ -11,3 +11,6 @@ export const MARK_PRESSURE_VISIBLE =
 
 // Add pin
 export const ADD_PIN = '(Beacon) Add a beacon to the map';
+
+// Mark pin as read
+export const UPDATE_READ = '(Beacon) Mark beacon as read';

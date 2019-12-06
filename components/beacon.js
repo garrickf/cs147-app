@@ -1,13 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import {TouchableOpacity, View, StyleSheet} from 'react-native';
+import {Image, TouchableOpacity, View, StyleSheet} from 'react-native';
 import {useSpring, animated, useTrail} from 'react-spring';
 import {coralHex, aquaHex, orchidHex, whiteHex, effects} from '../styles';
 import {useSelector, useDispatch} from 'react-redux';
 import {toggleModal, updateModal} from '../redux/actions';
 import {getModalActive} from '../redux/selectors';
+import Media from '../assets/images/Unionmedia.svg';
 
 const AnimatedView = animated(View);
 const AnimatedTouchableOpacity = animated(TouchableOpacity);
+const AnimatedMedia = animated(Media);
 
 const Particle = ({style, scale, toggled}) => {
   /* Special thanks to parametric equations */
@@ -112,19 +114,33 @@ const Beacon = ({
         left: props.scale.interpolate(s => location.x - (s - 0.3) * 50),
         top: props.scale.interpolate(s => location.y - (s - 0.3) * 150),
       }}>
-      <View>
+      <View style={styles.container}>
+        <View style = {{justifyContent: 'center', alignItems: 'center'}}>
         <AnimatedView
           style={{
             ...styles.circle,
             borderColor: mine ? aquaHex : coralHex,
-            borderWidth: props.scale.interpolate(s => 30 * s),
+            borderWidth: props.scale.interpolate(
+              s => (60 * s) / (type === 'NEWS' ? 2 : 1.2),
+            ),
             borderRadius: props.scale.interpolate(
-              s => (50 * s) / (type === 'NEWS' ? 2 : 1),
+              s => (50 * s) / (type === 'MEDIA' ? 2 : 1),
             ),
             height: props.scale.interpolate(s => 100 * s),
             width: props.scale.interpolate(s => 100 * s),
-          }}
-        />
+          }}>
+        </AnimatedView>
+        {type === 'MEDIA' && (
+            <AnimatedMedia
+              style={{
+                height: props.scale.interpolate(s => 100 * s),
+                width: props.scale.interpolate(s => 100 * s),
+                position: 'absolute',
+              }}
+              />
+          )}
+                        </View>
+
         <AnimatedView
           style={{
             ...styles.bottom,
@@ -168,7 +184,23 @@ Beacon.defaultProps = {
 
 export default Beacon;
 
+//Code for play button: fits in under the first animated view (circle)
+/*          {type === 'MEDIA' && (
+            <AnimatedMedia
+              style={{
+                height: props.scale.interpolate(s => 100 * s),
+                width: props.scale.interpolate(s => 100 * s),
+              }}
+            />
+          )}
+*/
+
 const styles = StyleSheet.create({
+
+  logo: {
+    position: 'absolute',
+    alignSelf: 'flex-start',
+  },
   circle: {
     //borderColor: aquaHex,
   },
@@ -177,7 +209,7 @@ const styles = StyleSheet.create({
     height: 0,
     borderLeftColor: 'transparent',
     borderRightColor: 'transparent',
-    //borderTopColor: aquaHex,
+    borderTopColor: aquaHex,
     position: 'absolute',
   },
   modal: {

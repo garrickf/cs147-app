@@ -105,6 +105,7 @@ const Beacon = ({type, location, attention, content, mine, viewed, story}) => {
         top: props.scale.interpolate(s => location.y - (s - 0.3) * 150),
       }}>
       <View style={styles.container}>
+        <View style = {{justifyContent: 'center', alignItems: 'center'}}>
         <AnimatedView
           style={{
             ...styles.circle,
@@ -119,6 +120,17 @@ const Beacon = ({type, location, attention, content, mine, viewed, story}) => {
             width: props.scale.interpolate(s => 100 * s),
           }}>
         </AnimatedView>
+        {type === 'MEDIA' && (
+            <AnimatedMedia
+              style={{
+                height: props.scale.interpolate(s => 100 * s),
+                width: props.scale.interpolate(s => 100 * s),
+                position: 'absolute',
+              }}
+              />
+          )}
+                        </View>
+
         <AnimatedView
           style={{
             ...styles.bottom,
@@ -174,6 +186,7 @@ export default Beacon;
 */
 
 const styles = StyleSheet.create({
+
   logo: {
     position: 'absolute',
     alignSelf: 'flex-start',

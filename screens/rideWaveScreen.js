@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, ScrollView, View} from 'react-native';
 import Text from '../components/core/text';
 import Header from '../components/core/header';
@@ -7,6 +7,15 @@ import {useTrail} from 'react-spring';
 import EventButton from '../components/core/event-button';
 
 const RideWaveScreen = ({navigation}) => {
+  const [secondsLeft, setSecondsLeft] = useState(3600 * 8);
+
+  useEffect(() => {
+    setTimeout(() => {
+      console.log(secondsLeft);
+      setSecondsLeft(secondsLeft - 1);
+    }, 1000);
+  }, [secondsLeft]);
+
   const events = [
     {
       header: 'Climate Change Rally',

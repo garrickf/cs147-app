@@ -10,10 +10,6 @@
  */
 
 import {ADD_PIN, UPDATE_READ} from '../actionTypes';
-import {getRead} from '../selectors';
-import {useSelector, useDispatch} from 'react-redux';
-
-readBool = [false, false, false, true];
 
 const fakeContent = [
   {
@@ -25,9 +21,14 @@ const fakeContent = [
       y: 200,
     },
     mine: false,
-    read: readBool[0],
+    read: false,
     type: 'NEWS',
-    story: ['https://www.bbc.com/news/world-latin-america-49971563', 'BBC', 'fish', 0],
+    story: [
+      'https://www.bbc.com/news/world-latin-america-49971563',
+      'BBC',
+      'fish',
+      0,
+    ],
     attention: 3,
   },
   {
@@ -38,10 +39,10 @@ const fakeContent = [
       y: 400,
     },
     mine: false,
-    read: readBool[1],
+    read: false,
     type: 'MEDIA',
     story: [require('../../assets/images/beach_cleanup.jpg'), '', 'turtle', 1],
-    attention: 2, 
+    attention: 2,
   },
   {
     header: ' Town Hall ',
@@ -51,22 +52,33 @@ const fakeContent = [
       y: 250,
     },
     mine: false,
-    read: readBool[2],
+    read: false,
     type: 'MEDIA',
-    story: [require('../../assets/images/environment_rally.jpeg'), '', 'whale', 2],
-    attention: 5, 
+    story: [
+      require('../../assets/images/environment_rally.jpeg'),
+      '',
+      'whale',
+      2,
+    ],
+    attention: 5,
   },
   {
     header: 'California banned plastic bags. So why do stores keep using them?',
-    body: 'Three years ago, California voters upheld a state law prohibiting single-use plastic grocery bags. But for all the furor...',
+    body:
+      'Three years ago, California voters upheld a state law prohibiting single-use plastic grocery bags. But for all the furor...',
     location: {
       x: 200,
       y: 300,
     },
     mine: false,
-    read: readBool[3],
+    read: false,
     type: 'NEWS',
-    story: ['https://www.sfchronicle.com/politics/article/California-banned-plastic-bags-So-why-do-stores-14872852.php', 'SF', 'seal', 3],
+    story: [
+      'https://www.sfchronicle.com/politics/article/California-banned-plastic-bags-So-why-do-stores-14872852.php',
+      'SF',
+      'seal',
+      3,
+    ],
     attention: 4,
   },
 ];
@@ -76,7 +88,6 @@ const initialState = {
     // For now, start with fake content.
     ...fakeContent,
   ],
-  read: readBool,
 };
 
 export default function(state = initialState, action) {
@@ -87,10 +98,14 @@ export default function(state = initialState, action) {
         beacons: [...state.beacons, action.beacon],
       };
     case UPDATE_READ:
-      return{
+      const newBeacons = [...state.beacons];
+      newBeacons[action.idx].read = true;
+      const newState = {
         ...state,
-        read: action.data.read,
-      }
+        beacons: newBeacons,
+      };
+      console.log(newState.beacons);
+      return newState;
     default:
       return state;
   }

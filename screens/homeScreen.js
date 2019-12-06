@@ -113,13 +113,17 @@ const HomeScreen = ({navigation}) => {
             />
             <Current />
             {beacons.map(
-              ({header, body, location, mine, read, type, story, attention}, idx) => (
+              (
+                {header, body, location, mine, read, type, story, attention},
+                idx,
+              ) => (
                 <Beacon
                   key={idx}
+                  idx={idx}
                   content={{header, body}}
                   location={location}
                   type={type}
-                  viewed={read}
+                  read={read}
                   mine={mine}
                   story={story}
                   attention={attention}

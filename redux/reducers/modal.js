@@ -5,11 +5,18 @@
 import {UPDATE_MODAL, TOGGLE_MODAL} from '../actionTypes';
 
 const initialState = {
-  header: 'Header',
-  body: 'Body',
+  // header: 'Header',
+  // body: 'Body',
+  // active: false,
+  // type: 'NEWS',
+  // story: ['www.bbc.co.uk', 'BBC']
   active: false,
-  type: 'NEWS',
-  story: ['www.bbc.co.uk', 'BBC']
+  payload: {
+    header: 'Header',
+    body: 'Body',
+    type: 'NEWS',
+    story: ['www.bbc.co.uk', 'BBC'],
+  },
 };
 
 export default function(state = initialState, action) {
@@ -17,10 +24,7 @@ export default function(state = initialState, action) {
     case UPDATE_MODAL:
       return {
         ...state,
-        header: action.data.header,
-        body: action.data.body,
-        type: action.data.type,
-        story: action.data.story,
+        payload: action.data,
       };
     case TOGGLE_MODAL:
       return {

@@ -1,16 +1,28 @@
 import React from 'react';
-import {View, StyleSheet, TouchableWithoutFeedback, Linking, Image} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  Linking,
+  Image,
+} from 'react-native';
 import {useSpring, animated} from 'react-spring';
 import Card from './core/card';
 import Text from './core/text';
 
 import {useSelector, useDispatch} from 'react-redux';
-import {getModalHeader, getModalBody, getModalActive, getModalType, getModalContent} from '../redux/selectors';
+import {
+  getModalHeader,
+  getModalBody,
+  getModalActive,
+  getModalType,
+  getModalContent,
+} from '../redux/selectors';
 import Button, {BUTTON_TYPES, BUTTON_COLORS} from './core/button';
 import ActionBar from './core/action-bar';
-import {toggleModal} from '../redux/actions';
+import {toggleModal, addPressure, markPressureVisible} from '../redux/actions';
 import NewsModal from './news-modal';
-import {effects, grayHex} from '../styles';
+import {grayHex} from '../styles';
 
 const AnimatedView = animated(View);
 
@@ -44,37 +56,45 @@ export default ({navigation}) => {
     dispatch(toggleModal());
   };
 
-  const viewContent = () => { 
-    if(type === 'NEWS') {
+  const viewContent = () => {
+    if (type === 'NEWS') {
       Linking.openURL(story[0]).catch(err =>
-      console.error('An error occurred', err),
-    );
-    }
-    else{
+        console.error('An error occurred', err),
+      );
+      setTimeout(() => {
+        dispatch(markPressureVisible(false)); // Navigating away
+        dispatch(addPressure(20, 'Read a story.'));
+      }, 1000);
+    } else {
       navigation.navigate('ViewImage', {
-        path: story[0]
+        path: story[0],
       });
-      }
-  }
+      dispatch(markPressureVisible(false)); // Navigating away
+      setTimeout(() => {
+        dispatch(addPressure(10, 'Viewed an image.'));
+      }, 1000);
+    }
+  };
 
-  viewReadButton = <Button title={'View'} onPress={viewContent} />
+  let viewReadButton = <Button title={'View'} onPress={viewContent} />;
   if (type === 'NEWS') {
-    viewReadButton = <Button title={'Read'} onPress={viewContent} />
+    viewReadButton = <Button title={'Read'} onPress={viewContent} />;
   }
 
-  ImagePreview = <View style = {styles.emptyView}/>
-  if (type == 'MEDIA') {
-    ImagePreview = <Image style = {styles.preview} resizeMode = "cover" source ={story[0]}/> 
+  let ImagePreview = <View style={styles.emptyView} />;
+  if (type === 'MEDIA') {
+    ImagePreview = (
+      <Image style={styles.preview} resizeMode="cover" source={story[0]} />
+    );
   }
 
-  NewsPreview = <View style = {styles.emptyView} /> 
-  if (type == 'NEWS') {
-    NewsPreview = <View style = {styles.emptyView}>
-      <NewsModal 
-        style = {styles.icon} 
-        source = {story[1]}
-      />
-    </View>
+  let NewsPreview = <View style={styles.emptyView} />;
+  if (type === 'NEWS') {
+    NewsPreview = (
+      <View style={styles.emptyView}>
+        <NewsModal style={styles.icon} source={story[1]} />
+      </View>
+    );
   }
 
   // Note: box-none means view cannot be target of touch events, but its subviews can be.
@@ -98,7 +118,10 @@ export default ({navigation}) => {
           <Text>{body}</Text>
           {ImagePreview}
           <ActionBar>
-            <Text style = {{fontSize: 12, alignSelf: 'center', color: grayHex}}> Shared by anonymous fish </Text>
+            <Text style={{fontSize: 12, alignSelf: 'center', color: grayHex}}>
+              {' '}
+              Shared by anonymous fish{' '}
+            </Text>
             <Button
               title={'Back'}
               type={BUTTON_TYPES.secondary}
@@ -114,7 +137,7 @@ export default ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
-  icon:{
+  icon: {
     position: 'relative',
     width: '100%',
     height: '100%',
@@ -126,8 +149,8 @@ const styles = StyleSheet.create({
     flex: 0,
   },
   preview: {
-      width: '100%',
-      height: 180,  
+    width: '100%',
+    height: 180,
   },
   backingCard: {
     // Styles the backing card which covers the entire screen and can be touched

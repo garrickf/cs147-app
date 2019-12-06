@@ -79,9 +79,9 @@ export default ({navigation}) => {
     }
   };
 
-  let viewReadButton = <Button title={'View'} onPress={viewContent} />;
+  let viewReadButton = <Button title={'VIEW'} onPress={viewContent} />;
   if (type === 'NEWS') {
-    viewReadButton = <Button title={'Read'} onPress={viewContent} />;
+    viewReadButton = <Button title={'READ'} onPress={viewContent} />;
   }
 
   let ImagePreview = <View style={styles.emptyView} />;
@@ -126,7 +126,7 @@ export default ({navigation}) => {
               Shared by {'\n'} anonymous {animal}{' '}
             </Text>
             <Button
-              title={'Back'}
+              title={'BACK'}
               type={BUTTON_TYPES.secondary}
               color={BUTTON_COLORS.coral}
               onPress={handlePress}

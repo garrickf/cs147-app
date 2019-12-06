@@ -38,7 +38,7 @@ const BeachCleanScreen = ({navigation}) => {
             style={styles.rsvpButton}
             onPress={() => {
               navigation.navigate('Home');
-              dispatch(addPressure(10, 'RSVP-ed to event!'));
+              dispatch(addPressure(20, 'RSVP-ed to event!'));
             }}
           />
         </View>

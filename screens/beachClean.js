@@ -34,7 +34,6 @@ const BeachCleanScreen = ({navigation}) => {
         <View style={styles.buttonWrap}>
           <Button
             title={'RSVP'}
-            type={'secondary'}
             style={styles.rsvpButton}
             onPress={() => {
               navigation.navigate('Home');

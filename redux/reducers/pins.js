@@ -53,7 +53,7 @@ const fakeContent = [
     mine: false,
     read: readBool[2],
     type: 'MEDIA',
-    story: [require('../../assets/images/environment_rally.jpeg'), 'whale', 2],
+    story: [require('../../assets/images/environment_rally.jpeg'), '', 'whale', 2],
     attention: 5, 
   },
   {

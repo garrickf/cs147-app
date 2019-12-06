@@ -65,7 +65,7 @@ const AddLinkScreen = ({navigation}) => {
                   y: 530,
                 },
                 attention: 0,
-                story: ['https://www.bbc.com/news/science-environment-50661448'],
+                story: ['https://www.bbc.com/news/science-environment-50661448', '', 'trout'],
               }),
             );
             navigation.navigate('Home');

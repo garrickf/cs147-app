@@ -85,7 +85,7 @@ export default ({navigation}) => {
       />
     </View>
   }
-
+  animal = story[2];
   // Note: box-none means view cannot be target of touch events, but its subviews can be.
   return (
     <>
@@ -107,7 +107,7 @@ export default ({navigation}) => {
           <Text>{body}</Text>
           {ImagePreview}
           <ActionBar>
-            <Text style = {{fontSize: 12, alignSelf: 'center', color: grayHex}}> Shared by anonymous fish </Text>
+            <Text style = {{fontSize: 12, color: grayHex, textAlign: 'right'}}> Shared by {"\n"} anonymous {animal} </Text>
             <Button
               title={'Back'}
               type={BUTTON_TYPES.secondary}

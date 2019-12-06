@@ -20,7 +20,7 @@ const displayPhoto = ({navigation}) => {
                   dispatch(
                     addBeacon({
                       header: 'My New Story!!!',
-                      story: [{uri: pathe}],
+                      story: [{uri: pathe}, '', 'shark'],
                       mine: true,
                       type: 'MEDIA',
                       location: {

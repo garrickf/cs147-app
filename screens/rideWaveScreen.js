@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, ScrollView, View} from 'react-native';
 import Text from '../components/core/text';
 import Header from '../components/core/header';
@@ -7,6 +7,21 @@ import {useTrail} from 'react-spring';
 import EventButton from '../components/core/event-button';
 
 const RideWaveScreen = ({navigation}) => {
+  const [secondsLeft, setSecondsLeft] = useState(3600 * 8);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setSecondsLeft(secondsLeft - 1);
+    }, 1000);
+  }, [secondsLeft]);
+
+  let hours = secondsLeft / 3600 - ((secondsLeft / 3600) % 1);
+  hours = ('0' + hours).slice(-2);
+  let minutes = secondsLeft / 60 - hours * 60 - ((secondsLeft / 60) % 1);
+  minutes = ('0' + minutes).slice(-2);
+  let seconds = secondsLeft - hours * 3600 - minutes * 60;
+  seconds = ('0' + seconds).slice(-2);
+
   const events = [
     {
       header: 'Climate Change Rally',
@@ -35,17 +50,21 @@ const RideWaveScreen = ({navigation}) => {
   return (
     <>
       <View style={styles.container}>
-        <Header>🌊 Ride the Wave!</Header>
+        <Header>🌊 Ride the Wave!{'\n'} </Header>
         <Text style={styles.paragraph}>
           People in your area are rushing to take action on{' '}
-          <Text style={{textDecorationLine: 'underline'}}>
+          <Text style={{fontSize: 20, textDecorationLine: 'underline'}}>
             environmentalism
           </Text>
           .
         </Text>
         <Text style={styles.paragraph}>
-          Swipe to explore how <Text style={{fontWeight: 'bold'}}>you </Text>
-          can ride the wave!
+          Swipe to explore how{' '}
+          <Text style={{fontSize: 20, fontWeight: 'bold'}}>you </Text>
+          can ride the wave!{' '}
+        </Text>
+        <Text style={styles.paragraph}>
+          Low tide in: {hours}:{minutes}:{seconds} {'\n'}
         </Text>
       </View>
 
@@ -82,7 +101,8 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   paragraph: {
-    paddingBottom: 10,
+    paddingBottom: 25,
+    fontSize: 20,
   },
   eventCard: {
     paddingHorizontal: 10,

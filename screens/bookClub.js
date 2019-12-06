@@ -3,6 +3,8 @@ import {StyleSheet, Image, View} from 'react-native';
 import Text from '../components/core/text';
 import Header from '../components/core/header';
 import Button, {BUTTON_TYPES, BUTTON_COLORS} from '../components/core/button';
+import {useDispatch} from 'react-redux';
+import {addPressure} from '../redux/actions';
 
 const BookClubScreen = ({navigation}) => {
   return (
@@ -35,6 +37,7 @@ const BookClubScreen = ({navigation}) => {
             style={styles.rsvpButton}
             onPress={() => {
               navigation.navigate('Home');
+              dispatch(addPressure(20, 'RSVP-ed to event!'));
             }}
           />
         </View>

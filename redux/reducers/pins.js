@@ -100,6 +100,7 @@ export default function(state = initialState, action) {
     case UPDATE_READ:
       const newBeacons = [...state.beacons];
       newBeacons[action.idx].read = true;
+      newBeacons[action.idx].attention+=1; 
       const newState = {
         ...state,
         beacons: newBeacons,

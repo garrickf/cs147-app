@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -21,7 +21,7 @@ import Toast from '../components/core/toast';
 import Beacon from '../components/beacon';
 import Modal from '../components/modal';
 import PressureBar from '../components/pressure-bar';
-import {getBeacons} from '../redux/selectors';
+import {getBeacons, getPressureLogMostRecent, getPressureLogSize, getPressureFilled} from '../redux/selectors';
 import {markPressureVisible} from '../redux/actions';
 
 const HomeScreen = ({navigation}) => {
@@ -29,17 +29,28 @@ const HomeScreen = ({navigation}) => {
   setTimeout(() => {
     dispatch(markPressureVisible(true));
   }, 1000);
+  console.log('rendering home screen....');
 
-  // const [toastMessage, updateToastMessage] = useState('');
+  const [toastMessage, updateToastMessage] = useState('');
+  const mostRecentAction = useSelector(getPressureLogMostRecent);
+  const filled = useSelector(getPressureFilled);
+  const logSize = useSelector(getPressureLogSize);
 
-  // const setToastMessage = message => {
-  //   updateToastMessage(message);
-  //   setTimeout(() => {
-  //     updateToastMessage('');
-  //   }, 4000);
-  // };
+  useEffect(() => {
+    updateToastMessage(mostRecentAction);
+    setTimeout(() => {
+      updateToastMessage('');
+    }, 4500);
+  }, [logSize, mostRecentAction]);
 
-  // const toast = <Toast>{toastMessage}</Toast>;
+  useEffect(() => {
+    if (filled) {
+      Vibration.vibrate(1000);
+      navigation.navigate('RideWave');
+    }
+  }, [filled, navigation]);
+
+  const toast = <Toast>{toastMessage}</Toast>;
 
   const beacons = useSelector(getBeacons);
 
@@ -123,7 +134,7 @@ const HomeScreen = ({navigation}) => {
             <PressureBar navigation={navigation} />
 
             <Modal navigation={navigation} />
-            {/* {toast} */}
+            {toast}
           </ImageBackground>
         </SafeAreaView>
       </View>

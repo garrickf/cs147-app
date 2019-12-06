@@ -1,33 +1,49 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, Image, View} from 'react-native';
 import Text from '../components/core/text';
 import Header from '../components/core/header';
+import Button, {BUTTON_TYPES, BUTTON_COLORS} from '../components/core/button';
 
 const RallyScreen = ({navigation}) => {
   return (
     <>
-      <View style={styles.container}>
-        <Header>Climate Change Rally</Header>
-        <Text style={styles.paragraph}>
-          About this event: Fight for the Green New Deal to reduce carbon
-          emissions and support communities facing the worst effects of the
-          climate crisis.
-        </Text>
-        <Text style={styles.paragraph}>
-          Date & Time: 12th October 2019, 12:00pm
-        </Text>
+      <View style={styles.outer}>
+        <View style={styles.container}>
+          <Header>Climate Change Rally</Header>
+          <Text style={styles.paragraph}>
+            <Text style={{fontWeight: 'bold'}}>About this event: </Text>
+            Fight for the Green New Deal to reduce carbon emissions and support
+            local communities.
+          </Text>
+          <Text style={styles.paragraph}>
+            <Text style={{fontWeight: 'bold'}}>Date & Time: </Text>
+            12th October 2019, 12:00pm
+          </Text>
+          <Text style={styles.paragraph}>
+            <Text style={{fontWeight: 'bold'}}>Location: </Text>
+            459 Lagunita Drive, Stanford, CA
+          </Text>
+        </View>
+        <Image
+          style={styles.img}
+          source={require('../assets/images/rally.png')}
+        />
+        <View style={styles.buttonWrap}>
+          <Button
+            title={'RSVP'}
+            type={'secondary'}
+            style={styles.rsvpButton}
+            onPress={() => {
+              navigation.navigate('Home');
+            }}
+          />
+        </View>
       </View>
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  BackButton: {
-    alignSelf: 'flex-end',
-    marginBottom: 60,
-    marginRight: 20,
-    marginTop: 20,
-  },
   container: {
     flex: 0,
     justifyContent: 'flex-start',
@@ -36,11 +52,26 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginTop: 40,
   },
+  buttonWrap: {
+    marginRight: 20,
+  },
   paragraph: {
     marginBottom: 10,
   },
+  outer: {
+    flex: 1,
+    alignItems: 'flex-end',
+  },
   eventCard: {
     marginRight: 10,
+  },
+  img: {
+    width: '100%',
+    marginVertical: 50,
+  },
+  rsvpButton: {
+    alignItems: 'flex-end',
+    alignSelf: 'flex-end',
   },
 });
 

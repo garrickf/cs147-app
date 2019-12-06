@@ -1,46 +1,47 @@
-import React, {useState} from 'react';
-import {StyleSheet, Text, ImageBackground, View} from 'react-native';
-import {aquaHex, coralHex, blackHex} from '../styles';
-import Button, {BUTTON_TYPES, BUTTON_COLORS} from '../components/core/button';
-import {useSelector, useDispatch} from 'react-redux';
+import React from 'react';
+import {useDispatch} from 'react-redux';
+import {StyleSheet, ImageBackground, View} from 'react-native';
+import {blackHex} from '../styles';
+import Button from '../components/core/button';
 
-import {addBeacon} from '../redux/actions';
+import {addBeacon, addPressure} from '../redux/actions';
 
-const displayPhoto = ({navigation}) => {
-  dispatch = useDispatch(); 
-    pathe = navigation.getParam('path', 'null');
-    return (
-      <>
-        <View style={{flex: 1}}>
-          <ImageBackground style={styles.container} source={{uri: pathe}}>
-            <View style={styles.postButton}>
-              <Button
-                title={'POST'}
-                onPress={() => {
-                  dispatch(
-                    addBeacon({
-                      header: 'My New Story!!!',
-                      story: [{uri: pathe}, '', 'shark'],
-                      mine: true,
-                      type: 'MEDIA',
-                      location: {
-                        x: 150,
-                        y: 500,
-                      },
-                      attention: 0,
-                    }),
-                  );
-                  navigation.navigate('Home');
-                }}
-              />
-            </View>
-          </ImageBackground>
-        </View>
-      </>
-    );
-  };
+const DisplayPhoto = ({navigation}) => {
+  const dispatch = useDispatch();
+  const path = navigation.getParam('path', 'null');
+  return (
+    <>
+      <View style={{flex: 1}}>
+        <ImageBackground style={styles.container} source={{uri: path}}>
+          <View style={styles.postButton}>
+            <Button
+              title={'POST'}
+              onPress={() => {
+                dispatch(
+                  addBeacon({
+                    header: 'My New Story!!!',
+                    story: [{uri: path}, '', 'shark'],
+                    mine: true,
+                    type: 'MEDIA',
+                    location: {
+                      x: 150,
+                      y: 500,
+                    },
+                    attention: 0,
+                  }),
+                );
+                dispatch(addPressure(30, 'Added new photo.'));
+                navigation.navigate('Home');
+              }}
+            />
+          </View>
+        </ImageBackground>
+      </View>
+    </>
+  );
+};
 
-export default displayPhoto;
+export default DisplayPhoto;
 
 const styles = StyleSheet.create({
   postButton: {

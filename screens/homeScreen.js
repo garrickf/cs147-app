@@ -1,51 +1,61 @@
-import React, {useState, Component, useRef, useEffect} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  ScrollView,
+  Vibration,
   View,
   StatusBar,
   ImageBackground,
-  Alert,
 } from 'react-native';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import Geolocation from 'react-native-geolocation-service';
 import mapStyle from '../maps/style';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {Colors} from 'react-native/Libraries/NewAppScreen'; // TODO: deprecate
 
 import Current from '../components/current-location';
-import Text from '../components/core/text';
-import Button, {BUTTON_TYPES, BUTTON_COLORS} from '../components/core/button';
-import Card from '../components/core/card';
 import AddButton from '../components/add-button';
-import ActionBar from '../components/core/action-bar';
 import Toast from '../components/core/toast';
-import store from '../redux/store';
 import Beacon from '../components/beacon';
 import Modal from '../components/modal';
 import PressureBar from '../components/pressure-bar';
-import {getBeacons} from '../redux/selectors';
+import {
+  getBeacons,
+  getPressureLogMostRecent,
+  getPressureLogSize,
+  getPressureFilled,
+} from '../redux/selectors';
+import {markPressureVisible} from '../redux/actions';
 
 const HomeScreen = ({navigation}) => {
-  // const [toastMessage, updateToastMessage] = useState('');
+  const dispatch = useDispatch();
+  setTimeout(() => {
+    dispatch(markPressureVisible(true));
+  }, 1000);
+  console.log('rendering home screen....');
 
-  // const setToastMessage = message => {
-  //   updateToastMessage(message);
-  //   setTimeout(() => {
-  //     updateToastMessage('');
-  //   }, 4000);
-  // };
+  const [toastMessage, updateToastMessage] = useState('');
+  const mostRecentAction = useSelector(getPressureLogMostRecent);
+  const filled = useSelector(getPressureFilled);
+  const logSize = useSelector(getPressureLogSize);
 
-  // const toast = <Toast>{toastMessage}</Toast>;
+  useEffect(() => {
+    updateToastMessage(mostRecentAction);
+    setTimeout(() => {
+      updateToastMessage('');
+    }, 4500);
+  }, [logSize, mostRecentAction]);
+
+  useEffect(() => {
+    if (filled) {
+      Vibration.vibrate(1000);
+      navigation.navigate('RideWave');
+    }
+  }, [filled, navigation]);
+
+  const toast = <Toast>{toastMessage}</Toast>;
 
   const beacons = useSelector(getBeacons);
 
@@ -134,7 +144,7 @@ const HomeScreen = ({navigation}) => {
             <PressureBar navigation={navigation} />
 
             <Modal navigation={navigation} />
-            {/* {toast} */}
+            {toast}
           </ImageBackground>
         </SafeAreaView>
       </View>

@@ -21,9 +21,9 @@ import {
 } from '../redux/selectors';
 import Button, {BUTTON_TYPES, BUTTON_COLORS} from './core/button';
 import ActionBar from './core/action-bar';
-import {toggleModal, updateRead} from '../redux/actions';
+import {toggleModal, addPressure, markPressureVisible, updateRead} from '../redux/actions';
 import NewsModal from './news-modal';
-import {effects, grayHex} from '../styles';
+import {grayHex} from '../styles';
 
 const AnimatedView = animated(View);
 
@@ -64,34 +64,42 @@ export default ({navigation}) => {
       Linking.openURL(story[0]).catch(err =>
         console.error('An error occurred', err),
       );
+      setTimeout(() => {
+        dispatch(markPressureVisible(false)); // Navigating away
+        dispatch(addPressure(20, 'Read a story.'));
+      }, 1000);
     } else {
       navigation.navigate('ViewImage', {
         path: story[0],
       });
+      dispatch(markPressureVisible(false)); // Navigating away
+      setTimeout(() => {
+        dispatch(addPressure(10, 'Viewed an image.'));
+      }, 1000);
     }
   };
 
-  viewReadButton = <Button title={'View'} onPress={viewContent} />;
+  let viewReadButton = <Button title={'View'} onPress={viewContent} />;
   if (type === 'NEWS') {
     viewReadButton = <Button title={'Read'} onPress={viewContent} />;
   }
 
-  ImagePreview = <View style={styles.emptyView} />;
-  if (type == 'MEDIA') {
+  let ImagePreview = <View style={styles.emptyView} />;
+  if (type === 'MEDIA') {
     ImagePreview = (
       <Image style={styles.preview} resizeMode="cover" source={story[0]} />
     );
   }
 
-  NewsPreview = <View style={styles.emptyView} />;
-  if (type == 'NEWS') {
+  let NewsPreview = <View style={styles.emptyView} />;
+  if (type === 'NEWS') {
     NewsPreview = (
       <View style={styles.emptyView}>
         <NewsModal style={styles.icon} source={story[1]} />
       </View>
     );
   }
-  animal = story[2];
+  const animal = story[2];
   // Note: box-none means view cannot be target of touch events, but its subviews can be.
   return (
     <>

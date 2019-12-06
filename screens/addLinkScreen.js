@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-import {addBeacon} from '../redux/actions';
+import {addBeacon, addPressure} from '../redux/actions';
 
 import {useDispatch} from 'react-redux';
 
@@ -68,6 +68,7 @@ const AddLinkScreen = ({navigation}) => {
                 story: ['https://www.bbc.com/news/science-environment-50661448', '', 'trout'],
               }),
             );
+            dispatch(addPressure(30, 'Added news story.'));
             navigation.navigate('Home');
           }}
         />

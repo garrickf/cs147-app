@@ -7,7 +7,7 @@ import {useDispatch} from 'react-redux';
 import {addPressure} from '../redux/actions';
 
 const BeachCleanScreen = ({navigation}) => {
-  dispatch = useDispatch();
+  const dispatch = useDispatch();
   return (
     <>
       <View style={styles.outer}>

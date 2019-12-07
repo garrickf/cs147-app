@@ -7,6 +7,7 @@ import {useDispatch} from 'react-redux';
 import {addPressure} from '../redux/actions';
 
 const BookClubScreen = ({navigation}) => {
+  const dispatch = useDispatch();
   return (
     <>
       <View style={styles.outer}>
